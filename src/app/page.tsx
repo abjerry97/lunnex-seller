@@ -100,8 +100,8 @@ export default function Home() {
             className="border-4 border-black border-opacity-100 drop-shadow-[0_4px_20px_0px_rgba(255,51,101,0.1)] rounded-xl"
             src="/images/Android-Large.png"
             alt=""
-            width={200}
-            height={250}
+            width={250}
+            height={200}
           />
         </div>
         <div className="w-full lg:w-1/2 text-center lg:text-start flex flex-col  justify-center my-12 ">

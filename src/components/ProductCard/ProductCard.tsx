@@ -10,7 +10,7 @@ export default function ProductCard(props:any) {
         <p className="text-xs mt-3">{text}</p>
       </div>
       <div className="w-3/12  lg:W-5/12 text-center relative">
-        <h1 className="text-3xl font-b6ld border-8 rounded-full p-10 lg:p-8 absolute mt-[-3rem] me-1">{index}.</h1></div>
+        <h1 className="flex text-center items-center justify-center text-3xl font-b6ld border-8 rounded-full absolute" style={{width:"7rem", height:"7rem", top:"-2.5rem",right:"-2.7rem"}}>{index}.</h1></div>
     </div>
   );
 }
