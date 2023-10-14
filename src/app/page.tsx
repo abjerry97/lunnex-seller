@@ -33,7 +33,7 @@ export default function Home() {
     },
   ];
   return (
-    <main className="">
+    <main className="text-black">
       <nav className="flex justify-between px-5 py-3 sticky top-0 bg-white z-[100]">
         <div className="logo flex items-center">
           <Logo />
@@ -52,11 +52,11 @@ export default function Home() {
 
       <section className="p-5 lg:p-24 text-center flex flex-col items-center justify-center ">
         <div className="text-center w-full md:w-8/12 lg:w-6/12 mb-10">
-          <h1 className={`mb-3 text-4xl font-bold`}>
+          <h1 className={`mb-3 text-4xl font-bold text-black`}>
             Supercharge your sales with a simple website.
           </h1>
 
-          <p className="mb-5">
+          <p className="mb-5 text-black">
             Our multivendor platform can help. With a range of tools and
             features, you can take your business to new heights.
           </p>
@@ -105,10 +105,10 @@ export default function Home() {
           />
         </div>
         <div className="w-full lg:w-1/2 text-center lg:text-start flex flex-col  justify-center my-12 ">
-          <h1 className=" text-2xl font-bold ">
+          <h1 className=" text-2xl font-bold  text-black">
             Ready to take the next step in growing your business online?
           </h1>
-          <p className="my-5 text-sm">
+          <p className="my-5 text-sm  text-black">
             Sign up for a free trial or explore our pricing plans to get
             started. Join thousands of satisfied store owners who trust{" "}
             <strong className="   font-semibold"> LUNNEX </strong>
@@ -151,8 +151,8 @@ export default function Home() {
           <FaqCard />
 
           <div className=" text-center my-10">
-            <h1 className=" text-2xl font-bold">Expand your business today!</h1>
-            <p className="my-4 text-sm">
+            <h1 className=" text-2xl font-bold  text-black">Expand your business today!</h1>
+            <p className="my-4 text-sm  text-black">
               Join our community of top-rated sellers and start selling your
               products to a wider audience.{" "}
             </p>
