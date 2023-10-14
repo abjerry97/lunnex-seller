@@ -39,7 +39,7 @@ export default function DashboardLayout(props: any) {
           <Logo />
         </div>
         <div className=" flex flex-col justify-between h-5/6">
-          <ul className="text-sm font-semibold">
+          <ul className="text-sm font-semibold  text-black">
          <a href="/home">      <li className="p-2 flex gap-2 items-center">
            <HomeIcon /> <div>Home</div>
             </li></a>
@@ -76,7 +76,7 @@ export default function DashboardLayout(props: any) {
       <div className="w-full lg:w-10/12 h-full max-h-screen overflow-y-scroll">
         <div className=" mb-2 lg:sticky top-0 bg-white px-8 py-4 lg:shadow opacity-100 " style={{zIndex:100}}>
           <div className="flex lg:justify-between">
-            <div className="">
+            <div className=" text-black">
               <h1 className="font-bold">Hi Daramoola,</h1>
               <p className="text-xs">Welcome to your Seller’s Dashboard.</p>
             </div>
@@ -96,13 +96,13 @@ export default function DashboardLayout(props: any) {
           </div>
         </div>
         {/* bg-[#FAFAFA] */}
-        <div className=" mx-4 lg:px-8 lg:py-6 rounded-xl h-full">
+        <div className=" mx-4 lg:px-8 lg:py-6 rounded-xl h-full  text-black">
           {props.children}
         </div>
       </div>
 
       <div className="sticky bottom-0 w-full px-3 lg:hidden shadow-xl">
-        <ul className="w-full text-sm flex bg-white opacity-100 justify-between">
+        <ul className="w-full text-sm flex bg-white opacity-100 justify-between  text-black">
           <a href="/">
             <li className="p-2 flex flex-col items-center gap-1">
               <HomeIcon /> <div>Home</div>
