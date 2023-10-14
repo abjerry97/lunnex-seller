@@ -33,6 +33,6 @@ export const whyChooseData = [
     title: "24/7 Support",
     text: "We're here for you. Our dedicated support team is available around the clock to assist with any questions or issues.",
     icon: <TwotoneSupport />,
-    color:"#F17997"
+    color:"#7979F1"
   },
 ];

@@ -33,7 +33,7 @@ export default function Login() {
               id=""
             />
           </div> 
-          <FormBtn className="my-4" onClick={() => router.push('/home')}>Continue</FormBtn> 
+          <FormBtn className="my-4" onClick={() =>{router.push('/home')}}>Continue</FormBtn> 
         </form>
         <p className="text-center my-10">
           By creating an account, you agree to our{" "}

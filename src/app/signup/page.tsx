@@ -1,8 +1,11 @@
+"use client"
 import React from "react";
 import AuthLayout from "../layouts/AuthLayout";
 import FormBtn from "@/components/FormBtn/FormBtn";
+import { useRouter } from "next/navigation";
 
 export default function Signup() {
+  const router = useRouter()
   return (
     <AuthLayout>
       <div className="text-center">
@@ -40,7 +43,7 @@ export default function Signup() {
               id=""
             />
           </div>
-          <FormBtn className="my-4">Continue</FormBtn>
+          <FormBtn className="my-4" onClick={() =>{router.push('/home')}}>Continue</FormBtn>
         </form>
         <p className="text-center my-10">
           By creating an account, you agree to our{" "}
