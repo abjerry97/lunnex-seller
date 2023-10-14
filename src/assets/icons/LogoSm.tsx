@@ -5,7 +5,7 @@ export default function LogoSm() {
   return (
     <a href="/"> 
     
-    <Image src="/images/logo-sm.png" alt="" />
+    <Image src="/images/logo-sm.png" alt="" width={100} height={100} />
     </a>
   );
 }

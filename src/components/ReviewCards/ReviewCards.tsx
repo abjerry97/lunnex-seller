@@ -10,7 +10,7 @@ export default function ReviewCards(props:any) {
       </p>
       <div className="flex gap-2 py-3 px-6">
         <div className="rounded-full overflow-hidden">
-          <Image src={avatar} alt="" />
+          <Image src={avatar} alt="" width={50} height={50}/>
         </div>
         <div className="">
           <h4 className=" text-start text-sm font-semibold text-black my-0">

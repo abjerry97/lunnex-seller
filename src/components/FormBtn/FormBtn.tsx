@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 
 export default function FormBtn(props: any) {
@@ -9,6 +10,7 @@ export default function FormBtn(props: any) {
           ? "border-2 border-black bg-white text-black"
           : "text-white  bg-[#000000] "
       } ${className}`}
+      onClick={(e)=>e.preventDefault()}
     >
       {children}
     </button>

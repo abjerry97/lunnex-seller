@@ -145,7 +145,7 @@ export default function Wallet() {
           <div className="rounded-xl bg-[#FCFCFC] shadow mb-4 p-4">
             <p>Sponsored ad</p>
             <div className="rounded">
-              <Image src="/images/sponsored-ad.png" alt="" />
+              <Image src="/images/sponsored-ad.png" alt="" width={100} height={100} />
             </div>
           </div>
         </div>

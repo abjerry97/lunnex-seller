@@ -9,7 +9,7 @@ export default function ProductTableItem() {
       <div className="rounded flex  py-3 border border-[#D2D2D2] text-xs text-center items-center shadow w-full px-2 lg:px-0">
         <div className="w-1/12 px-2 hidden lg:flex justify-center text-center ">1</div>
         <div className="w-2/12 flex items-center justify-center">
-          <Image className=" h-16 w-full lg:w-8/12" src="/images/product-1.png" alt="" />
+          <Image className=" h-16 w-full lg:w-8/12" src="/images/product-1.png" alt=""  width={100} height={100}/>
         </div>
         <div className="w-10/12 lg:w-2/12 font-bold text-start lg:text-center px-2 lg:px-0 ">
           Zenith Aura™ Luminescent Whisper

@@ -12,7 +12,7 @@ export default function OrderCard() {
         <h1 className="font-semibold">N400:00</h1>
       </div>
       <div className="bg-white rounded-xl flex p-4 gap-2">
-        <Image src="/images/product-1.png" alt="" />
+        <Image src="/images/product-1.png" alt=""  width={100} height={100} />
         <div className="p-2">
           <h1 className="font-semibold text-sm mb-4">Zenith Aura™ Luminescent Whisper</h1>
           <div className="flex gap-2 text-xs">

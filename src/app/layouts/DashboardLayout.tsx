@@ -30,7 +30,7 @@ export default function DashboardLayout(props: any) {
         <div className="flex gap-1 items-center ">
           <SearchIcon /> <NotificationIcon />
           <div className="flex items-center">
-            <Image src="/images/avatar.png" alt="" />
+            <Image src="/images/avatar.png" alt="" width={40} height={40} />
           </div>
         </div>
       </div>
@@ -90,7 +90,7 @@ export default function DashboardLayout(props: any) {
                 <NotificationIcon />
               </div>
               <div className="flex items-center">
-                <Image src="/images/avatar.png" alt="" />
+                <Image src="/images/avatar.png" alt=""  width={40} height={40}/>
               </div>
             </div>
           </div>
