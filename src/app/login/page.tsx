@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/context/UserAuthContext";
 import FormInput from "@/components/FormInput/FormInput";
 import { ToastContainer,toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const router = useRouter();

@@ -48,14 +48,14 @@ export default function Home() {
           </a>
           <a href="store-name">
             {" "}
-            <PageBtn onClick={()=>{router.push("/store-name")}}>Create account</PageBtn>
+            <PageBtn onClick={()=>{router.push("/signup")}}>Create account</PageBtn>
           </a>
         </div>
       </nav>
 
       <section className="p-5 lg:p-24 text-center flex flex-col items-center justify-center ">
         <div className="text-center w-full md:w-8/12 lg:w-6/12 mb-10">
-          <h1 className={`mb-3 text-4xl font-bold text-black`}>
+          <h1 className={`mb-3 text-4xl font-bold text-black mt-10 lg:mt-5`}>
             Supercharge your sales with a simple website.
           </h1>
 
