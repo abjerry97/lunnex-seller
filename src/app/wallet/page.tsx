@@ -8,6 +8,7 @@ import PageBtn from "@/components/PageBtn/PageBtn";
 import EyeOffIcon from "@/assets/icons/EyeOffIcon";
 import DailyTaskIcon from "@/assets/icons/DailyTaskIcon";
 import Image from "next/image";
+import SelectBox from "@/components/SelectBox/SelectBox";
 
 export default function Wallet() {
   return (
@@ -37,13 +38,7 @@ export default function Wallet() {
             <div className=" mb-4 w-full  shadow p-4 bg-[#FCFCFC] min-h-6 h-fit  rounded-xl">
               <div className="flex justify-between mb-4 items-center">
                 <h4 className="font-bold text-lg">Revenue</h4>
-                <select
-                  name=""
-                  id=""
-                  className="h-fit border border-black p-2 rounded text-xs"
-                >
-                  <option value="All time">All time</option>
-                </select>
+                <SelectBox/>
               </div>
               <div className="">
                 <HomeChart />
@@ -54,9 +49,7 @@ export default function Wallet() {
             <div className="bg-[#FCFCFC] rounded p-4 shadow">
               <div className="flex justify-between  ">
                 <h1>Transactions</h1>
-                <select>
-                  <option value="">All time</option>
-                </select>
+                <SelectBox/>
               </div>
               <div className="mt-4">
                 <div className="flex items-center gap-4 text-sm border-b p-2">

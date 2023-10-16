@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import AuthLayout from "../layouts/AuthLayout";
 import FormBtn from "@/components/FormBtn/FormBtn";

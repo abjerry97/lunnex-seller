@@ -1,3 +1,4 @@
+"use client"
 import HomeIcon from "@/assets/icons/HomeIcon";
 import Logo from "@/assets/icons/Logo";
 import DestopSideNav from "@/components/DestopSideNav/DestopSideNav"

@@ -2,6 +2,7 @@ import React from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ProductTable from "@/components/ProductTable/ProductTable";
 import HomeChart from "@/components/charts/HomeChart";
+import SelectBox from "@/components/SelectBox/SelectBox";
 
 export default function Products() {
   return (
@@ -10,9 +11,7 @@ export default function Products() {
         <div className="bg-[#FCFCFC] rounded-xl p-4 w-full lg:w-6/12 shadow flex flex-col justify-between ">
           <div className="flex justify-between mb-16 items-center">
             <h4 className="font-semibold text-sm  text-black">Total Sales</h4>
-            <select name="" id="" className="  text-black text-xs border p-2 border-black bg-inherit rounded shadow">
-              <option className="text-xs  text-black" value="All Sales">All Sales</option>
-            </select>
+            <SelectBox/>
           </div>
 
           <div className="flex items-center gap-1 ">
@@ -23,9 +22,7 @@ export default function Products() {
         <div className="bg-[#FCFCFC] rounded-xl p-4  w-full lg:w-6/12 shadow hidden lg:block">
           <div className="flex justify-between items-center mb-2">
             <h4 className="font-semibold text-sm  text-black">Total Sales</h4>
-            <select name="" id="" className=" text-black text-xs border p-2 border-black bg-inherit rounded shadow">
-              <option className="text-xs  text-black" value="All Sales">All Sales</option>
-            </select>
+            <SelectBox/>
           </div>
 
           <HomeChart />

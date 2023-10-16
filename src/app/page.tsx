@@ -13,8 +13,11 @@ import ProductCard from "@/components/ProductCard/ProductCard";
 import ReviewCards from "@/components/ReviewCards/ReviewCards";
 import WhyChooseCard from "@/components/WhyChooseCard/WhyChooseCard";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  
+  const router = useRouter()
   const productCard = [
     {
       title: "Create Sellers Account.",
@@ -41,11 +44,11 @@ export default function Home() {
         <div className="flex gap-4">
           <a href="login">
             {" "}
-            <PageBtn transparent> Login</PageBtn>
+            <PageBtn transparent onClick={()=>{router.push("/login")}}> Login</PageBtn>
           </a>
           <a href="store-name">
             {" "}
-            <PageBtn>Create account</PageBtn>
+            <PageBtn onClick={()=>{router.push("/store-name")}}>Create account</PageBtn>
           </a>
         </div>
       </nav>
@@ -61,7 +64,7 @@ export default function Home() {
             features, you can take your business to new heights.
           </p>
 
-          <PageBtn>Start Selling!</PageBtn>
+          <PageBtn onClick={()=>{router.push("/login")}}>Start Selling!</PageBtn>
         </div>
            <Image 
           className="border-4 border-black border-opacity-100 drop-shadow-[0_4px_20px_0px_rgba(255,51,101,0.1)] rounded-xl"
@@ -115,7 +118,7 @@ export default function Home() {
             to create their websites.
           </p>
           <div className="flex items-center justify-around lg:justify-start">
-            <PageBtn>Start Selling</PageBtn>
+            <PageBtn onClick={()=>{router.push("/login")}}>Start Selling</PageBtn>
           </div>
         </div>
       </section>
@@ -156,7 +159,7 @@ export default function Home() {
               Join our community of top-rated sellers and start selling your
               products to a wider audience.{" "}
             </p>
-            <PageBtn>Start Selling!</PageBtn>
+            <PageBtn onClick={()=>{router.push("/login")}}>Start Selling!</PageBtn>
           </div>
         </div>
       </section>

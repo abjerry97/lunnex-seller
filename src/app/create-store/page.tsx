@@ -20,14 +20,17 @@ export default function CreateStore() {
             placeholder="Enter welcome text here"
           />
 
-<FormInput label="Email address" placeholder="Add your Email address here" />
+          <FormInput
+            label="Email address"
+            placeholder="Add your Email address here"
+          />
           <FormBtn>Save Changes</FormBtn>
         </div>
         <div className="w-full lg:w-2/12 "></div>
         <div className="w-full lg:w-5/12 bg-[#F3F3F3] h-fit">
           <div className="bg-[#26264C] p-4 text-white flex items-center justify-between">
             <p>Store preview</p>
-            <PlayIcon/>
+            <PlayIcon />
           </div>
 
           <div className="border-2 border-black m-4 bg-white shadow">
