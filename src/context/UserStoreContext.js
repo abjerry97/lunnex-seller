@@ -36,7 +36,7 @@ export function UserStoreContextProvider({ children }) {
   }
 
   useEffect(() => { 
-      alert('In userstorecontext use effect')
+      // alert('In userstorecontext use effect')
       initialStore = JSON.parse(localStorage.getItem("userStore"))
   //  localStorage.setItem("userStores",JSON.stringify(stores))
    

@@ -22,7 +22,7 @@ export default function StoreName() {
         position: "top-right", 
         pauseOnHover: true,
       });
-      // router.push("/signup");
+      router.push("/signup");
     } catch (err: any) {
       // setError(mapAuthCodeToMessage(err.code))
 
