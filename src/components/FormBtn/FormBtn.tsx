@@ -1,21 +1,31 @@
 "use client";
 import React from "react";
+import DottedElipseLoader from "../DottedElipseLoader";
 
 export default function FormBtn(props: any) {
-  const { children, transparent, className, onClick = () => {} } = props;
+  const {
+    isLoading,
+    loadingText = "loading",
+    children,
+    transparent,
+    className,
+    onClick = () => {},
+  } = props;
   return (
     <button
-      className={`text-sm w-full px-2 md:px-3 lg:px-6  py-3 rounded-lg shadow   ${
+    disabled={isLoading}
+      className={`text-sm w-full px-2 md:px-3 lg:px-6  py-3 rounded-lg shadow  flex justify-center items-center gap-2 ${
         !!transparent
           ? "border-2 border-black bg-white text-black"
           : "text-white  bg-[#000000] "
-      } ${className}`}
+      } ${className} ${isLoading ? "opacity-80" : ""}`}
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
       }}
     >
-      {children}
+      {isLoading ? loadingText : children}
+      {isLoading && <DottedElipseLoader />}
     </button>
   );
 }

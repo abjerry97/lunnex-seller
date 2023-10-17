@@ -5,51 +5,43 @@ import FormBtn from "@/components/FormBtn/FormBtn";
 import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/context/UserAuthContext";
 import FormInput from "@/components/FormInput/FormInput";
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Login() {
   const router = useRouter();
 
   const { logIn } = useUserAuth();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
-  const [isLoading, setisLoading] = useState(false)
+  const [password, setPassword] = useState("");
+  const [isLoading, setisLoading] = useState(false);
 
-  const handleSubmit = async (e:any) => { 
-    e.preventDefault() 
-    try { 
-      setisLoading(true)
-     const loginres = await logIn(email, password) 
-      setisLoading(false)
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      setisLoading(true);
+      const loginres = await logIn(email, password);
+      setisLoading(false);
       toast.success(JSON.stringify("Success"), {
-        position: 'top-right', 
-        // autoClose: 3000, 
-        // hideProgressBar: false,
-        // closeOnClick: true,
+        position: "top-right", 
         pauseOnHover: true,
-               });
-      router.push("/home")
-    } catch (err:any) {
+      });
+      router.push("/home");
+    } catch (err: any) {
       // setError(mapAuthCodeToMessage(err.code))
-      
-     await toast.error(err.message, {
-      position: 'top-right',
-      // autoClose: 3000, 
-      // hideProgressBar: false,
-      // closeOnClick: true,
-      pauseOnHover: true,
-             });
-      console.warn(err)
-      setisLoading(false)
-    }
 
-  }
+      await toast.error(err.message, {
+        position: "top-right", 
+        pauseOnHover: true,
+      });
+      console.warn(err);
+      setisLoading(false);
+    }
+  };
 
   return (
     <AuthLayout>
- 
       <div className="text-center">
-        <h3 className="font-bold">Welcome 👋</h3>
+        <h3 className="font-bold  text-2xl mb-1">Welcome 👋</h3>
         <p className="mb-4">Enter your details to sign in to your account.</p>
 
         <form>
@@ -77,10 +69,7 @@ export default function Login() {
               setValue={setPassword}
             />
           </div>
-          <FormBtn
-            className="my-4"
-            onClick={ handleSubmit}
-          >
+          <FormBtn className="my-4" onClick={handleSubmit}>
             Continue
           </FormBtn>
         </form>

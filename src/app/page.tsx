@@ -48,7 +48,7 @@ export default function Home() {
           </a>
           <a href="store-name">
             {" "}
-            <PageBtn onClick={()=>{router.push("/signup")}}>Create account</PageBtn>
+            <PageBtn onClick={()=>{router.push("/store-name")}}>Create account</PageBtn>
           </a>
         </div>
       </nav>

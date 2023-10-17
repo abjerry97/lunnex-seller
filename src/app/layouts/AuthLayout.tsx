@@ -8,7 +8,7 @@ function AuthLayout(props: any) {
         <Logo />
       </div>
       
-      <div className="flex items-center justify-center py-20 lg:py-20">
+      <div className="flex items-center justify-center py-20 lg:py-2">
         <div className="w-10/12 md:w-6/12 lg:w-4/12 text-black">{props.children}</div>
       </div>
     </div>

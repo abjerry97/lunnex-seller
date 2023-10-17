@@ -1,57 +1,45 @@
-"use client"
-import React , { useState } from "react";
+"use client";
+import React, { useState } from "react";
 import AuthLayout from "../layouts/AuthLayout";
 import FormBtn from "@/components/FormBtn/FormBtn";
 import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/context/UserAuthContext";
-import { ToastContainer,toast } from 'react-toastify';
+import {  toast } from "react-toastify";
 import FormInput from "@/components/FormInput/FormInput";
 
 export default function Signup() {
-  const router = useRouter()
+  const router = useRouter();
 
-  
-
-  const {  signUpWithName} = useUserAuth();
+  const { signUpWithName } = useUserAuth();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
-  const [name, setName] = useState(""); 
-  const [isLoading, setisLoading] = useState(false)
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [isLoading, setisLoading] = useState(false);
 
-  const handleSubmit = async (e:any) => { 
-    e.preventDefault() 
-    try { 
-      setisLoading(true)
-     const loginres = await signUpWithName(email, password,name) 
-      setisLoading(false)
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      setisLoading(true);
+      await signUpWithName(email, password, name);
+      setisLoading(false);
       toast.success(JSON.stringify("Success"), {
-        position: 'top-right', 
-        // autoClose: 3000, 
-        // hideProgressBar: false,
-        // closeOnClick: true,
         pauseOnHover: true,
-               });
-      router.push("/home")
-    } catch (err:any) {
-      // setError(mapAuthCodeToMessage(err.code))
-      
-     await toast.error(err.message, {
-      position: 'top-right',
-      // autoClose: 3000, 
-      // hideProgressBar: false,
-      // closeOnClick: true,
-      pauseOnHover: true,
-             });
-      console.warn(err)
-      setisLoading(false)
+      });
+      router.push("/home");
+    } catch (err: any) {
+      await toast.error(err.message, {
+        position: "top-right",
+        pauseOnHover: true,
+      });
+      console.warn(err);
+      setisLoading(false);
     }
-
-  }
+  };
 
   return (
     <AuthLayout>
       <div className="text-center">
-        <h3 className="font-bold">Welcome 👋</h3>
+        <h3 className="font-bold text-2xl mb-1">Welcome 👋</h3>
         <p className="mb-4">Enter your details to create an account.</p>
 
         <form action="">
@@ -63,7 +51,6 @@ export default function Signup() {
               type="text"
               name="name"
               id=""
-              
               value={name}
               setValue={setName}
             />
@@ -92,7 +79,9 @@ export default function Signup() {
               setValue={setPassword}
             />
           </div>
-          <FormBtn className="my-4" onClick={handleSubmit}>Continue</FormBtn>
+          <FormBtn className="my-4" onClick={handleSubmit}>
+            Continue
+          </FormBtn>
         </form>
         <p className="text-center my-10">
           By creating an account, you agree to our{" "}

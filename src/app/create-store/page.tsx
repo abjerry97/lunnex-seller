@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import FormInput from "@/components/FormInput/FormInput";
@@ -24,8 +25,9 @@ export default function CreateStore() {
             label="Email address"
             placeholder="Add your Email address here"
           />
+          <div className="mt-6">
           <FormBtn>Save Changes</FormBtn>
-        </div>
+        </div></div>
         <div className="w-full lg:w-2/12 "></div>
         <div className="w-full lg:w-5/12 bg-[#F3F3F3] h-fit">
           <div className="bg-[#26264C] p-4 text-white flex items-center justify-between">
