@@ -6,7 +6,7 @@ import WalletIcon from '@/assets/icons/WalletIcon'
 import React from 'react'
 
 export default function MobileBottomNav() {
-  return ( <div className="sticky bottom-0 w-full px-3 lg:hidden shadow-xl">
+  return ( <div className="fixed bottom-0 w-full px-3 lg:hidden shadow-xl">
   <ul className="w-full text-sm flex bg-white opacity-100 justify-between  text-black">
     <a href="/">
       <li className="p-2 flex flex-col items-center gap-1">
