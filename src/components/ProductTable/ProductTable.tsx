@@ -1,6 +1,7 @@
 import RatingIcon from "@/assets/icons/RatingIcon";
 import React from "react";
-import ProductTableItem from "../ProductTableItem/ProductTableItem";
+import ProductTableItem from "../ProductTableItem/ProductTableItem"; 
+import { products } from "@/assets/icons/data/Products";
 
 export default function ProductTable() {
   return (
@@ -21,13 +22,10 @@ export default function ProductTable() {
         Product
       </div>
       <div className="m-0 lg:m-4  text-black">
-        <ProductTableItem />
-        <ProductTableItem />
-        <ProductTableItem />
-        <ProductTableItem />
-        <ProductTableItem />
-        <ProductTableItem />
-        <ProductTableItem />
+        {products.map((data, index)=>{
+          return (
+            <ProductTableItem index={index} {...data} key={index}/>)
+        })} 
       </div>
     </div>
   );
