@@ -35,19 +35,15 @@ export function UserStoreContextProvider({ children }) {
     return newStore
   }
 
-  useEffect(() => { 
-      // alert('In userstorecontext use effect')
+  useEffect(() => {  
       if (typeof window !== 'undefined') {
       initialStore = JSON.parse(localStorage.getItem("userStore"))
-      }
-  //  localStorage.setItem("userStores",JSON.stringify(stores))
-   
-  //  localStorage.removeItem("userStores") 
-
+      setStore(initialStore)
+      } 
     return () => {
          localStorage.removeItem("userStores") 
     }
-  }, [store])
+  }, [])
 
   return (
     <userStoreContext.Provider value={{ store, createStoreName ,addDataToStore}}>

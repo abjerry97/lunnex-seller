@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { Inter, Lato } from "next/font/google";
 import { UserAuthContextProvider } from "../context/UserAuthContext";
 import { Providers } from "@/providers/Providers";
-import { ToastContainer,toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-        <ToastContainer
+          <ToastContainer
             position="bottom-center"
             autoClose={2000}
             hideProgressBar={false}
@@ -34,7 +34,9 @@ export default function RootLayout({
             pauseOnHover
             theme="colored"
           />
-{children}</Providers></body>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

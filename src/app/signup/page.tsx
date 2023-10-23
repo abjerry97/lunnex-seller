@@ -4,13 +4,15 @@ import AuthLayout from "../layouts/AuthLayout";
 import FormBtn from "@/components/FormBtn/FormBtn";
 import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/context/UserAuthContext";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import FormInput from "@/components/FormInput/FormInput";
+import { useUserStore } from "@/context/UserStoreContext";
 
 export default function Signup() {
   const router = useRouter();
 
   const { addUserToFirestore } = useUserAuth();
+  const { store } = useUserStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -20,7 +22,7 @@ export default function Signup() {
     e.preventDefault();
     try {
       setisLoading(true);
-      await addUserToFirestore(email, password, {name});
+      await addUserToFirestore(email, password, {fullName: name,store:store });
       setisLoading(false);
       toast.success(JSON.stringify("Success"), {
         pauseOnHover: true,
@@ -41,7 +43,7 @@ export default function Signup() {
       <div className="text-center">
         <h3 className="font-bold text-2xl mb-1">Welcome 👋</h3>
         <p className="mb-4">Enter your details to create an account.</p>
-
+{JSON.stringify(store)}
         <form action="">
           <div className="text-start my-4">
             <label htmlFor="name">Name</label>
@@ -58,7 +60,6 @@ export default function Signup() {
           <div className="text-start my-4">
             <label htmlFor="login">Email</label>
             <FormInput
-              // className="border border-[#D4D4D4] rounded-lg w-full p-2 placeholder:text-[#A0A0A0] text-sm"
               placeholder="Your email"
               type="email"
               name="login"
@@ -70,7 +71,6 @@ export default function Signup() {
           <div className="text-start my-4">
             <label htmlFor="login">Password</label>
             <FormInput
-              // className="border border-[#D4D4D4] rounded-lg w-full p-2 placeholder:text-[#A0A0A0] text-sm"
               placeholder="Create a password"
               type="password"
               name="login"
@@ -79,7 +79,11 @@ export default function Signup() {
               setValue={setPassword}
             />
           </div>
-          <FormBtn className="my-4" onClick={handleSubmit}>
+          <FormBtn
+            className="my-4"
+            isLoading={isLoading}
+            onClick={handleSubmit}
+          >
             Continue
           </FormBtn>
         </form>

@@ -19,10 +19,10 @@ export default function Login() {
     e.preventDefault();
     try {
       setisLoading(true);
-      const loginres = await logIn(email, password);
+      await logIn(email, password);
       setisLoading(false);
       toast.success(JSON.stringify("Success"), {
-        position: "top-right", 
+        position: "top-right",
         pauseOnHover: true,
       });
       router.push("/home");
@@ -30,7 +30,7 @@ export default function Login() {
       // setError(mapAuthCodeToMessage(err.code))
 
       await toast.error(err.message, {
-        position: "top-right", 
+        position: "top-right",
         pauseOnHover: true,
       });
       console.warn(err);
@@ -40,7 +40,7 @@ export default function Login() {
 
   return (
     <AuthLayout>
-      <div className="text-center">
+      <div className="text-center mt-4 lg:mt-10 pt-0 md:pt-5">
         <h3 className="font-bold  text-2xl mb-1">Welcome 👋</h3>
         <p className="mb-4">Enter your details to sign in to your account.</p>
 
@@ -48,7 +48,6 @@ export default function Login() {
           <div className="text-start my-4">
             <label htmlFor="login">Email</label>
             <FormInput
-              // className="border-2 border-[#D4D4D4] rounded-lg w-full p-2 placeholder:text-[#A0A0A0] text-sm"
               placeholder="Your email"
               type="email"
               name="login"
@@ -60,7 +59,6 @@ export default function Login() {
           <div className="text-start my-4">
             <label htmlFor="login">Password</label>
             <FormInput
-              // className="border-2 border-[#D4D4D4] rounded-lg w-full p-2 placeholder:text-[#A0A0A0] text-sm"
               placeholder="Create a password"
               type="password"
               name="login"
@@ -69,7 +67,11 @@ export default function Login() {
               setValue={setPassword}
             />
           </div>
-          <FormBtn className="my-4" onClick={handleSubmit}>
+          <FormBtn
+            className="my-4"
+            isLoading={isLoading}
+            onClick={handleSubmit}
+          >
             Continue
           </FormBtn>
         </form>

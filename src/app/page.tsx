@@ -12,12 +12,13 @@ import PageBtn from "@/components/PageBtn/PageBtn";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import ReviewCards from "@/components/ReviewCards/ReviewCards";
 import WhyChooseCard from "@/components/WhyChooseCard/WhyChooseCard";
+import { useUserAuth } from "@/context/UserAuthContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  
-  const router = useRouter()
+  const router = useRouter();
+  const { user,logOut } = useUserAuth();
   const productCard = [
     {
       title: "Create Sellers Account.",
@@ -37,20 +38,48 @@ export default function Home() {
   ];
   return (
     <main className="text-black">
-      <nav className="flex justify-between px-5 py-3 sticky top-0 bg-white z-[100]px-5 py-3 sticky top-0 bg-white z-[100]">
+      <nav className="flex justify-between px-5 py-3 sticky top-0 bg-white z-[100]px-5 z-[100]">
         <div className="logo flex items-center">
           <Logo />
         </div>
-        <div className="flex gap-4">
-          <a href="login">
-            {" "}
-            <PageBtn transparent onClick={()=>{router.push("/login")}}> Login</PageBtn>
+        {user ? (
+          <div className="flex gap-4 items-center">
+          <a 
+          className="underline"
+           href="/home"
+          >
+           go to dashboard
           </a>
-          <a href="store-name">
-            {" "}
-            <PageBtn onClick={()=>{router.push("/store-name")}}>Create account</PageBtn>
-          </a>
-        </div>
+
+          <PageBtn transparent onClick={logOut}>
+            Logout
+          </PageBtn>
+          </div>
+        ) : (
+          <div className="flex gap-4">
+            <a href="login">
+              {" "}
+              <PageBtn
+                transparent
+                onClick={() => {
+                  router.push("/login");
+                }}
+              >
+                {"Login"}
+              </PageBtn>
+            </a>
+            <a href="store-name">
+              {" "}
+              <PageBtn
+                onClick={() => {
+                  router.push("/store-name");
+                }}
+              >
+                Create account
+              </PageBtn>
+            </a>
+          </div>
+        )}
       </nav>
 
       <section className="p-5 lg:p-24 text-center flex flex-col items-center justify-center ">
@@ -58,15 +87,20 @@ export default function Home() {
           <h1 className={`mb-3 text-4xl font-bold text-black mt-10 lg:mt-5`}>
             Supercharge your sales with a simple website.
           </h1>
-
           <p className="mb-5 text-black">
             Our multivendor platform can help. With a range of tools and
             features, you can take your business to new heights.
           </p>
 
-          <PageBtn onClick={()=>{router.push("/login")}}>Start Selling!</PageBtn>
+          <PageBtn
+            onClick={() => {
+              router.push("/login");
+            }}
+          >
+            Start Selling!
+          </PageBtn>
         </div>
-           <Image 
+        <Image
           className="border-4 border-black border-opacity-100 drop-shadow-[0_4px_20px_0px_rgba(255,51,101,0.1)] rounded-xl"
           src="/images/Dashboard-Home.png"
           alt=""
@@ -118,7 +152,13 @@ export default function Home() {
             to create their websites.
           </p>
           <div className="flex items-center justify-around lg:justify-start">
-            <PageBtn onClick={()=>{router.push("/login")}}>Start Selling</PageBtn>
+            <PageBtn
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
+              Start Selling
+            </PageBtn>
           </div>
         </div>
       </section>
@@ -154,12 +194,20 @@ export default function Home() {
           <FaqCard />
 
           <div className=" text-center my-10">
-            <h1 className=" text-2xl font-bold  text-black">Expand your business today!</h1>
+            <h1 className=" text-2xl font-bold  text-black">
+              Expand your business today!
+            </h1>
             <p className="my-4 text-sm  text-black">
               Join our community of top-rated sellers and start selling your
               products to a wider audience.{" "}
             </p>
-            <PageBtn onClick={()=>{router.push("/login")}}>Start Selling!</PageBtn>
+            <PageBtn
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
+              Start Selling!
+            </PageBtn>
           </div>
         </div>
       </section>

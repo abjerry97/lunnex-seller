@@ -6,7 +6,7 @@ export default function PageBtn(props: any) {
   return (
     <button
       className={`text-xs w-fit px-4 md:px-3 lg:px-5  py-3 font-semibold rounded-lg shadow bg-[#FF3365]    ${
-        !!transparent ? "border-2 border-black bg-white text-black":"text-white"
+        !!transparent ? "border-2 border-black bg-white text-black":"text-white box-content"
       }`}
       
       onClick={(e)=>{e.preventDefault();
