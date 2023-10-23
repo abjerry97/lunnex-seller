@@ -37,7 +37,7 @@ export default function Home() {
   ];
   return (
     <main className="text-black">
-      <nav className="flex justify-between px-5 py-3 sticky top-0 bg-white z-[100]">
+      <nav className="flex justify-between px-5 py-3 sticky top-0 bg-white z-[100]px-5 py-3 sticky top-0 bg-white z-[100]">
         <div className="logo flex items-center">
           <Logo />
         </div>

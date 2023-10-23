@@ -10,7 +10,7 @@ import FormInput from "@/components/FormInput/FormInput";
 export default function Signup() {
   const router = useRouter();
 
-  const { signUpWithName } = useUserAuth();
+  const { addUserToFirestore } = useUserAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -20,7 +20,7 @@ export default function Signup() {
     e.preventDefault();
     try {
       setisLoading(true);
-      await signUpWithName(email, password, name);
+      await addUserToFirestore(email, password, {name});
       setisLoading(false);
       toast.success(JSON.stringify("Success"), {
         pauseOnHover: true,

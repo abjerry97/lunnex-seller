@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -7,46 +7,59 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   updateProfile,
-} from 'firebase/auth'
-import { auth } from '../app/firebase'
+} from "firebase/auth";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import app, { auth } from "../app/firebase";
+const db = getFirestore(app);
 
-const userAuthContext = createContext()
+const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
   function logIn(email, password) {
-    return signInWithEmailAndPassword(auth, email, password)
-  }
-  function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password)
+    return signInWithEmailAndPassword(auth, email, password);
   }
 
-  async function signUpWithName(email, password, name) {
-    return signUpWithExtraData(
-      email,
-      password,
-      { displayName: name },
-      updateUserDisplayName,
-    ) 
+  function addUserToFirestore(email, password, data) {
+    return signUp(email, password, (data) =>
+      addDoc(collection(db, "users"), {
+        email: email,
+        ...data,
+        gender: "",
+        allowMails: false,
+        allowPromotionMails: false,
+        allowMessages: false,
+        allowPromotionMessages: false,
+        roles: [],
+        store: "",
+        backgroundPic: "",
+        country: "",
+        nationality: "",
+        language: "",
+        city: "",
+        migrate: "",
+      })
+    );
+  }
+  async function signUp(email, password, cb) {
+    const newUser = await createUserWithEmailAndPassword(auth, email, password);
+    const { uid, emailVerified, isAnonymous, photoURL, phoneNumber } =
+      newUser?.user;
+    return cb({ uid, emailVerified, isAnonymous, photoURL, phoneNumber });
   }
 
-  async function signUpWithExtraData(email, password, data, cb) {
-    const userCredentials = await signUp(email, password)
-
-    if (userCredentials.user) {
-      await cb(userCredentials.user, data)
-    }
-
-    // return userCredentials
+  async function signUpWithExtraData(email, password, data) {
+    const userCredentials = await signUp(email, password, data);
+    return userCredentials;
   }
 
   function updateUserDisplayName(user, name) {
-    return updateUserProfile(user, name)
+    return updateUserProfile(user, name);
   }
 
   function updateUserProfile(user, data) {
-    return updateProfile(user, data)
+    return updateProfile(user, data);
   }
 
   //    function refreshUser() {
@@ -58,32 +71,32 @@ export function UserAuthContextProvider({ children }) {
   // }
 
   function logOut() {
-    return signOut(auth)
+    return signOut(auth);
   }
   function googleSignIn() {
-    const googleAuthProvider = new GoogleAuthProvider()
-    return signInWithPopup(auth, googleAuthProvider)
+    const googleAuthProvider = new GoogleAuthProvider();
+    return signInWithPopup(auth, googleAuthProvider);
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentuser) => { 
-      setUser(currentuser)
-    })
+    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+      setUser(currentuser);
+    });
 
     return () => {
-      unsubscribe()
-    }
-  }, [])
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, googleSignIn, signUpWithName }}
+      value={{ user, logIn, signUp, logOut, googleSignIn, addUserToFirestore }}
     >
       {children}
     </userAuthContext.Provider>
-  )
+  );
 }
 
 export function useUserAuth() {
-  return useContext(userAuthContext)
+  return useContext(userAuthContext);
 }
