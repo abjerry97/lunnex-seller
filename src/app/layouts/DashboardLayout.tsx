@@ -18,6 +18,7 @@ import MobileTopNav from "@/components/MobileTopNav/MobileTopNav";
 import DesktopTopNav from "@/components/DesktopTopNav/DesktopTopNav";
 import { useUserAuth } from "@/context/UserAuthContext";
 import { useRouter } from "next/navigation";
+import ProtectedRoute from "../ProtectedRoute";
 const LogoDiv = () => {
   return (
     <>
@@ -30,36 +31,33 @@ export default function DashboardLayout(props: any) {
   const router = useRouter();
   const { user } = useUserAuth();
 
-  useEffect(() => {
-    const authenticated = !!user && !!user.uid;
-    if (!authenticated) router.push("/login");
-  }, []);
-
   return (
-    <div className="block lg:flex h-screen max-h-screen overflow-hiden">
-      <MobileTopNav />
-      <DestopSideNav />
+    <ProtectedRoute>
+      <div className="block lg:flex h-screen max-h-screen overflow-hiden">
+        <MobileTopNav />
+        <DestopSideNav />
 
-      <div className="w-full lg:w-10/12 h-full max-h-screen overflow-y-scroll">
-        <div
-          className=" mb-2 lg:sticky top-0 bg-white px-8 py-4 lg:shadow opacity-100 "
-          style={{ zIndex: 100 }}
-        >
-          <div className="flex lg:justify-between">
-            <div className=" text-black">
-              <h1 className="font-bold">Hi {user?.displayName??""},</h1>
-              <p className="text-xs">Welcome to your Seller’s Dashboard.</p>
+        <div className="w-full lg:w-10/12 h-full max-h-screen overflow-y-scroll">
+          <div
+            className=" mb-2 lg:sticky top-0 bg-white px-8 py-4 lg:shadow opacity-100 "
+            style={{ zIndex: 100 }}
+          >
+            <div className="flex lg:justify-between">
+              <div className=" text-black">
+                <h1 className="font-bold">Hi {user?.displayName ?? ""},</h1>
+                <p className="text-xs">Welcome to your Seller’s Dashboard.</p>
+              </div>
+              <DesktopTopNav />
             </div>
-            <DesktopTopNav />
+          </div>
+          {/* bg-[#FAFAFA] */}
+          <div className=" mx-4 lg:px-8 lg:py-6 rounded-xl h-full  text-black">
+            {props.children}
           </div>
         </div>
-        {/* bg-[#FAFAFA] */}
-        <div className=" mx-4 lg:px-8 lg:py-6 rounded-xl h-full  text-black">
-          {props.children}
-        </div>
-      </div>
 
-      <MobileBottomNav />
-    </div>
+        <MobileBottomNav />
+      </div>
+    </ProtectedRoute>
   );
 }
