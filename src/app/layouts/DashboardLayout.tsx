@@ -38,7 +38,7 @@ export default function DashboardLayout(props: any) {
         <MobileTopNav />
         <DestopSideNav />
 
-        <div className="w-full lg:w-10/12 h-full max-h-screen overflow-y-scroll relative bottom-36 lg:bottom-0">
+        <div className="w-full lg:w-10/12 h-full max-h-screen overflow-y-scroll relative">
           <div
             className=" mb-2 lg:sticky top-0 bg-white px-8 py-4 lg:shadow opacity-100 "
             style={{ zIndex: 100 }}
