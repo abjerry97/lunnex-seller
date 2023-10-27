@@ -8,6 +8,7 @@ import TwotoneSupport from "@/assets/icons/TwotoneSupport";
 import { reviews } from "@/assets/icons/data/Reviews";
 import { whyChooseData } from "@/assets/icons/data/WhyChooseData";
 import FaqCard from "@/components/FaqCard/FaqCard";
+import Header from "@/components/Header/Header";
 import PageBtn from "@/components/PageBtn/PageBtn";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import ReviewCards from "@/components/ReviewCards/ReviewCards";
@@ -18,7 +19,7 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
-  const { user,logOut } = useUserAuth();
+  const { user, logOut } = useUserAuth();
   const productCard = [
     {
       title: "Create Sellers Account.",
@@ -38,50 +39,7 @@ export default function Home() {
   ];
   return (
     <main className="text-black">
-      <nav className="flex justify-between px-5 py-3 sticky top-0 bg-white z-[100]px-5 z-[100]">
-        <div className="logo flex items-center">
-          <Logo />
-        </div>
-        {user ? (
-          <div className="flex gap-4 items-center">
-          <a 
-          className="underline"
-           href="/home"
-          >
-           go to dashboard
-          </a>
-
-          <PageBtn transparent onClick={logOut}>
-            Logout
-          </PageBtn>
-          </div>
-        ) : (
-          <div className="flex gap-4">
-            <a href="login">
-              {" "}
-              <PageBtn
-                transparent
-                onClick={() => {
-                  router.push("/login");
-                }}
-              >
-                {"Login"}
-              </PageBtn>
-            </a>
-            <a href="store-name">
-              {" "}
-              <PageBtn
-                onClick={() => {
-                  router.push("/store-name");
-                }}
-              >
-                Create account
-              </PageBtn>
-            </a>
-          </div>
-        )}
-      </nav>
-
+      <Header />
       <section className="p-5 lg:p-24 text-center flex flex-col items-center justify-center ">
         <div className="text-center w-full md:w-8/12 lg:w-6/12 mb-10">
           <h1 className={`mb-3 text-4xl font-bold text-black mt-10 lg:mt-5`}>

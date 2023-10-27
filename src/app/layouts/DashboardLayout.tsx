@@ -33,11 +33,12 @@ export default function DashboardLayout(props: any) {
 
   return (
     <ProtectedRoute>
+      <div className="">
       <div className="block lg:flex h-screen max-h-screen overflow-hiden">
         <MobileTopNav />
         <DestopSideNav />
 
-        <div className="w-full lg:w-10/12 h-full max-h-screen overflow-y-scroll">
+        <div className="w-full lg:w-10/12 h-full max-h-screen overflow-y-scroll relative bottom-36 lg:bottom-0">
           <div
             className=" mb-2 lg:sticky top-0 bg-white px-8 py-4 lg:shadow opacity-100 "
             style={{ zIndex: 100 }}
@@ -51,12 +52,14 @@ export default function DashboardLayout(props: any) {
             </div>
           </div>
           {/* bg-[#FAFAFA] */}
-          <div className=" mx-4 lg:px-8 lg:py-6 rounded-xl h-full  text-black">
+          <div className=" mx-4 lg:px-8 lg:py-6 rounded-xl h-full  text-black ">
             {props.children}
           </div>
         </div>
 
-        <MobileBottomNav />
+      </div>
+      
+      <MobileBottomNav />
       </div>
     </ProtectedRoute>
   );
