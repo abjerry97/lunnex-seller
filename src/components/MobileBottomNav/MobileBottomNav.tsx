@@ -17,10 +17,13 @@ export default function MobileBottomNav() {
     const [isHovered, setisHovered] = useState(false);
     return (
       <li onClick={() => router.push(to)}>
-        <li className="p-2 flex flex-col items-center gap-1">
+        <div 
+         className={`p-2 flex flex-col items-center gap-1 cursor-pointer hover:text-[#FF3365] ${
+          active && "text-[#FF3365]"
+        }`}>
           {icon({ active: isHovered || active, mobile: true })}{" "}
           <div>{name}</div>
-        </li>
+        </div>
       </li>
     );
   };
@@ -30,11 +33,8 @@ export default function MobileBottomNav() {
       <ul className="w-full text-sm flex  opacity-100 justify-between  text-black">
         {navLinks?.map((data: any, index) => {
           if (data.to.includes(pathname)) data = { ...data, active: true };
-if(data.mobile)
-          return <MobileNavLinks key={index} {...data} />;
+          if (data.mobile) return <MobileNavLinks key={index} {...data} />;
         })}
- 
-       
       </ul>
     </div>
   );
