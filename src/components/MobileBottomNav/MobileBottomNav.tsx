@@ -1,45 +1,41 @@
-import HomeIcon from '@/assets/icons/HomeIcon'
-import OrderIcon from '@/assets/icons/OrderIcon'
-import ProductIcon from '@/assets/icons/ProductIcon'
-import StoreIcon from '@/assets/icons/StoreIcon'
-import WalletIcon from '@/assets/icons/WalletIcon'
-import React from 'react'
+"use client";
+import HomeIcon from "@/assets/icons/HomeIcon";
+import OrderIcon from "@/assets/icons/OrderIcon";
+import ProductIcon from "@/assets/icons/ProductIcon";
+import StoreIcon from "@/assets/icons/StoreIcon";
+import WalletIcon from "@/assets/icons/WalletIcon";
+import React, { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { navLinks } from "@/assets/icons/data/Navlinks";
 
 export default function MobileBottomNav() {
-  return ( <div className="bg-white fixed bottom-0 w-full px-3 lg:hidden shadow h-fit">
-  <ul className="w-full text-sm flex  opacity-100 justify-between  text-black">
-    <a href="/">
-      <li className="p-2 flex flex-col items-center gap-1">
-        <HomeIcon /> <div>Home</div>
+  const router = useRouter();
+  const pathname = usePathname();
+  const MobileNavLinks = (props: any) => {
+    const { name, to, icon, active } = props;
+
+    const [isHovered, setisHovered] = useState(false);
+    return (
+      <li onClick={() => router.push(to)}>
+        <li className="p-2 flex flex-col items-center gap-1">
+          {icon({ active: isHovered || active, mobile: true })}{" "}
+          <div>{name}</div>
+        </li>
       </li>
-    </a>
-    <a href="/products">
-    <li className="p-2 flex flex-col items-center gap-1">
-      <ProductIcon /> <div> Product</div>
-    </li>
-    </a>
-    <a href="/wallet">
-    <li className="p-2 flex flex-col items-center gap-1">
-      <WalletIcon />
-      <div className=""> Wallet</div>
-    </li>
-    </a>
-    <a href="/store">
-    <li className="p-2 flex flex-col items-center gap-1">
-      <StoreIcon /> <div className=""> Store</div>
-    </li>
-    </a>
-    <a href="/orders">
-    <li className="p-2 flex flex-col items-center gap-1">
-      <OrderIcon />
-      <div className=""> Order</div>
-    </li>
-    </a>
-    {/* <li className="p-2 flex flex-col items-center gap-1">
-      <SettingsIcon />
-      <div className=""> Settings</div>
-    </li> */}
-  </ul>
-</div>
-  )
+    );
+  };
+
+  return (
+    <div className="bg-white fixed bottom-0 w-full px-3 lg:hidden shadow h-fit">
+      <ul className="w-full text-sm flex  opacity-100 justify-between  text-black">
+        {navLinks?.map((data: any, index) => {
+          if (data.to.includes(pathname)) data = { ...data, active: true };
+if(data.mobile)
+          return <MobileNavLinks key={index} {...data} />;
+        })}
+ 
+       
+      </ul>
+    </div>
+  );
 }

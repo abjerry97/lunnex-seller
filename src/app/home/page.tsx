@@ -32,13 +32,14 @@ export default function Home() {
       <div className="w-full my-5">
         <div className="md:hidden">
         <Slide
+        cssClass="gap-2"
           slidesToScroll={1}
           slidesToShow={1}
           indicators={true}
           autoplay={false}
           responsive={responsiveSettings}
         >
-          <div className="bg-[#D0D0FB] rounded-xl p-4 mx-2   shadow h-full">
+          <div className="bg-[#D0D0FB] rounded-xl p-4 mx-2 s  shadow h-full">
             <div className="flex justify-between mb-16 items-center">
               <h4 className="font-semibold text-sm  text-black">Total Sales</h4>
               <SelectBox />
@@ -79,7 +80,7 @@ export default function Home() {
         </div>
         <div className="hidden md:flex">
       
-          <div className="bg-[#D0D0FB] rounded-xl p-4 mx-2   shadow h-full w-full">
+          <div className="bg-[#D0D0FB] rounded-xl p-4 me-4   shadow h-full w-full">
             <div className="flex justify-between mb-16 items-center">
               <h4 className="font-semibold text-sm  text-black">Total Sales</h4>
               <SelectBox />
@@ -89,7 +90,7 @@ export default function Home() {
               <span className="text-xs  text-black"> +2.4%</span>
             </div>
           </div>
-          <div className="bg-[#FBD0DB] rounded-xl p-4 mx-2  shadow  lg:block  h-full  w-full">
+          <div className="bg-[#FBD0DB] rounded-xl p-4 me-4  shadow  lg:block  h-full  w-full">
             <div className="flex justify-between mb-16 items-center">
               <h4 className="font-semibold text-sm  text-black">Total Sales</h4>{" "}
               <SelectBox />
@@ -99,7 +100,7 @@ export default function Home() {
               <span className="text-xs  text-black">+2.4%</span>
             </div>
           </div>
-          <div className="bg-[#FCFCFC] rounded-xl p-4 mx-2  h-full  w-full shadow flex flex-col justify-between  lg:flex">
+          <div className="bg-[#FCFCFC] rounded-xl p-4   h-full  w-full shadow flex flex-col justify-between  lg:flex">
             <div className="flex ">
               <h4 className="w-4/6 font-semibold text-sm  text-black">
                 Average Rating
