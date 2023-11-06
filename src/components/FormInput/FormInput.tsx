@@ -6,7 +6,7 @@ export default function FormInput(props: any) {
 
   return (
     <div className="text-start mb-3">
-      {label && <label htmlFor="login" className="text-sm">{label}</label>}
+      {label && <label htmlFor="login" className="text-xs">{label}</label>}
       <input
         className="border-[1.5px] border-[#D4D4D4] rounded-lg w-full p-2 py-3 placeholder:text-[#A0A0A0] text-xs "
         placeholder={`${placeholder}`}

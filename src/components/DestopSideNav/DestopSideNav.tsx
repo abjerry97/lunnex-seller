@@ -1,6 +1,6 @@
-"use client"; 
-import Logo from "@/assets/icons/Logo"; 
-import Person from "@/assets/icons/Person"; 
+"use client";
+import Logo from "@/assets/icons/Logo";
+import Person from "@/assets/icons/Person";
 import { navLinks } from "@/assets/icons/data/Navlinks";
 import { useRouter, usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -9,8 +9,8 @@ export default function DestopSideNav() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const SideNavLink = (props:any) => {
-    const { name, to, icon, active } = props;
+  const SideNavLink = (props: any) => {
+    const { name, to, icon, active, children } = props;
 
     const [isHovered, setisHovered] = useState(false);
     return (
@@ -24,6 +24,15 @@ export default function DestopSideNav() {
         <div className="p-2 flex gap-2 items-center">
           {icon({ active: isHovered || active })} <div>{name}</div>
         </div>
+
+        {active && children &&
+          children.map((data: any, index: any) => {
+            return (
+              <div className=" ms-4 p-2 flex gap-2 items-center text-xs">
+                {data.icon({ active: isHovered || active })} <div>{data.name}</div>
+              </div>
+            );
+          })}
       </li>
     );
   };
@@ -35,10 +44,10 @@ export default function DestopSideNav() {
       </div>
       <div className=" flex flex-col justify-between h-5/6">
         <ul className="text-sm font-semibold  text-black">
-          {navLinks?.map((data:any, index) => {
+          {navLinks?.map((data: any, index) => {
             if (data.to.includes(pathname)) data = { ...data, active: true };
 
-            return <SideNavLink key={index}  {...data} />;
+            return <SideNavLink key={index} {...data} />;
           })}
         </ul>
 

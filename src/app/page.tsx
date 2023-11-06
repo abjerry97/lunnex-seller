@@ -1,10 +1,4 @@
-"use client";
-import Logo from "@/assets/icons/Logo";
-import MaterialSymbol from "@/assets/icons/MaterialSymbol";
-import MobileAlt from "@/assets/icons/MobileAlt";
-import SeoLine from "@/assets/icons/SeoLine";
-import Streamline from "@/assets/icons/Streamline";
-import TwotoneSupport from "@/assets/icons/TwotoneSupport";
+"use client"; 
 import { reviews } from "@/assets/icons/data/Reviews";
 import { whyChooseData } from "@/assets/icons/data/WhyChooseData";
 import FaqCard from "@/components/FaqCard/FaqCard";
@@ -14,13 +8,30 @@ import ProductCard from "@/components/ProductCard/ProductCard";
 import ReviewCards from "@/components/ReviewCards/ReviewCards";
 import WhyChooseCard from "@/components/WhyChooseCard/WhyChooseCard";
 import { useUserAuth } from "@/context/UserAuthContext";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {Cloudinary} from "@cloudinary/url-gen"; 
+import {fill} from "@cloudinary/url-gen/actions/resize";
+import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
+
+import { useState } from "react";
+
 
 export default function Home() {
+  const [publicId, setPublicId] = useState("");
+  // Replace with your own cloud  
+  const [cloudName] = useState("abj");
+  // Replace with your own upload preset
+  const [uploadPreset] = useState("fzevswcc");
+
   const router = useRouter();
   const { user, logOut } = useUserAuth();
-  const productCard = [
+
+
+  // cld.3
+
+   const productCard = [
     {
       title: "Create Sellers Account.",
       text: "Add product details and start selling.",
@@ -37,6 +48,25 @@ export default function Home() {
       color: "#F17997",
     },
   ];
+  const [uwConfig] = useState({
+    cloudName,
+    uploadPreset
+    // cropping: true, //add a cropping step
+    // showAdvancedOptions: true,  //add advanced options (public_id and tag)
+    // sources: [ "local", "url"], // restrict the upload sources to URL and local files
+    // multiple: false,  //restrict upload to a single file
+    // folder: "user_images", //upload files to the specified folder
+    // tags: ["users", "profile"], //add the given tags to the uploaded files
+    // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
+    // clientAllowedFormats: ["images"], //restrict uploading to image files only
+    // maxImageFileSize: 2000000,  //restrict file size to less than 2MB
+    // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
+    // theme: "purple", //change to a purple theme
+  });
+
+  const cld = new Cloudinary({cloud: {cloudName: 'abj'}});
+  const myImage = cld.image(publicId);
+  myImage.resize(fill().width(20).height(20));
   return (
     <main className="text-black">
       <Header />
@@ -70,20 +100,28 @@ export default function Home() {
             Sell your products in three easy steps.
           </h1>
         </div>
-        <div className="py-10 px-0 lg:px-5 lg:px-28 flex flex-wrap lg:flex-nowrap justify-center gap-10 w-full">
+        <div className="py-10 px-0  lg:px-28 flex flex-wrap lg:flex-nowrap justify-center gap-10 w-full">
           {productCard.map((data, index) => {
             return <ProductCard key={index} index={index + 1} {...data} />;
           })}
         </div>
       </section>
-
+      <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} />
+      {/* <AdvancedImage cldImg={myImage} /> */}
+          {/* {JSON.stringify(myImage)} */}
+      <AdvancedImage
+          style={{ width: "50px" }}
+          
+          cldImg={myImage}
+          plugins={[responsive(), placeholder()]}
+        />
       <section className="bg-[#D0D0FB] p-5 lg:p-10 ">
         <div className="text-center flex justify-center ">
           <h1 className="text-2xl font-bold my-10 w-full lg:w-3/12">
             Why Choose Lunnex?
           </h1>
         </div>
-        <div className="flex flex-wrap gap-4 items-center justify-center items-stretch mb-10">
+        <div className="flex flex-wrap gap-4 justify-center items-stretch mb-10">
           {whyChooseData.map((data, index) => {
             return <WhyChooseCard key={index} {...data} />;
           })}

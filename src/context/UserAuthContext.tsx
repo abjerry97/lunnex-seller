@@ -35,6 +35,7 @@ export const UserAuthContextProvider = ({ children }: any) => {
       addFirebaseDoc("privateUserData", {
         ...privateUserData({ ...dataToSend }),
       });
+      return dataToSend
     });
   }
   async function signUp(

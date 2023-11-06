@@ -10,7 +10,7 @@ function AuthLayout(props: any) {
   useEffect(() => {
     const authenticated = !!user && !!user.uid;
     if (authenticated) router.push("/home");
-  }, []);
+  }, [user,router]);
 
   return (
     

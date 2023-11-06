@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AuthLayout from "../layouts/AuthLayout";
 import FormBtn from "@/components/FormBtn/FormBtn";
 import { useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ export default function Signup() {
   const router = useRouter();
 
   const { addUserToFirestore } = useUserAuth();
-  const { store } = useUserStore();
+  const { storeName, createStore } = useUserStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -22,7 +22,13 @@ export default function Signup() {
     e.preventDefault();
     try {
       setisLoading(true);
-      await addUserToFirestore(email, password, {fullName: name,store:store });
+      const user = await addUserToFirestore(
+        email,
+        password,
+        { fullName: name },
+        storeName
+      );
+      if (user?.uid) await createStore({ name: storeName, userId: user.uid });
       setisLoading(false);
       toast.success(JSON.stringify("Success"), {
         pauseOnHover: true,
@@ -37,13 +43,15 @@ export default function Signup() {
       setisLoading(false);
     }
   };
+  useEffect(() => {
+    if (!storeName) router.push("/store-name");
+  }, [storeName,router]);
 
   return (
     <AuthLayout>
       <div className="text-center">
         <h3 className="font-bold text-2xl mb-1">Welcome 👋</h3>
         <p className="mb-4">Enter your details to create an account.</p>
-{JSON.stringify(store)}
         <form action="">
           <div className="text-start my-4">
             <label htmlFor="name">Name</label>
