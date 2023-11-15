@@ -2,15 +2,25 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 // import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDPtpEIiYd5a8Og1KaD6wq-OBPhjW04gS8",
+//   authDomain: "avid-infinity-245609.firebaseapp.com",
+//   projectId: "avid-infinity-245609",
+//   storageBucket: "avid-infinity-245609.appspot.com",
+//   messagingSenderId: "924884594067",
+//   appId: "G-5VL7P7C8DP",
+// };
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDPtpEIiYd5a8Og1KaD6wq-OBPhjW04gS8",
   authDomain: "avid-infinity-245609.firebaseapp.com",
   projectId: "avid-infinity-245609",
   storageBucket: "avid-infinity-245609.appspot.com",
   messagingSenderId: "924884594067",
-  appId: "G-5VL7P7C8DP",
+  appId: "1:924884594067:web:fbc2b6ef3300fa87b94c66",
+  measurementId: "G-5VL7P7C8DP"
 };
-
 // // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
@@ -91,7 +101,7 @@ const firebaseCloudMessaging = {
         if (status && status === "granted") {
           // Get new token from Firebase
           const fcm_token = await getToken(messaging,{
-            vapidKey: "BJXINwEV_YGUdQ8ZM25UseO15QE6D5q6jUIuoRdAeichZ0VP-i-UmBn4pIH5JzHhQBmYOrI67MIMyzyfUU0Yd08",
+            vapidKey: "BPOVlX8egoygc6-h6sBwyzSyZ3B13sz7zmGEsa7V2vGRWs6_cyTdPM-WwhkSz3H3VzBHY7EOqOOkcB3A_caaLUU",
           });
 
           // Set token in our local storage
