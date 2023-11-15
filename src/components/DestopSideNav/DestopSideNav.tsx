@@ -28,7 +28,7 @@ export default function DestopSideNav() {
         {active && children &&
           children.map((data: any, index: any) => {
             return (
-              <div className=" ms-4 p-2 flex gap-2 items-center text-xs">
+              <div className=" ms-4 p-2 flex gap-2 items-center text-xs" key={index}>
                 {data.icon({ active: isHovered || active })} <div>{data.name}</div>
               </div>
             );
