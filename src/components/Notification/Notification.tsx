@@ -45,10 +45,9 @@ function PushNotificationLayout({ children }:any) {
   useEffect(() => {
     setToken();
 
-    // Event listener that listens for the push notification event in the background
-    // "serviceWorker" in navigator
-    if (true) {
-      navigator.serviceWorker.addEventListener("message", (event) => {
+    // Event listener that listens for the push notification event in the background 
+    if ("serviceWorker" in navigator) {
+      navigator?.serviceWorker.addEventListener("message", (event) => {
         console.log("event for the service worker", event);
         console.log(event.data.firebaseMessaging.payload.notification);
         const message = event.data.firebaseMessaging.payload;
@@ -91,7 +90,8 @@ function PushNotificationLayout({ children }:any) {
   });
 
   function copiedMessageToast(token: string){
-    navigator.clipboard.writeText(token);
+    if(navigator)
+    navigator?.clipboard.writeText(token);
     toast(
         <div>
           <h5>copied to clipboard!</h5>
