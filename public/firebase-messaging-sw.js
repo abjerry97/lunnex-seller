@@ -163,8 +163,7 @@ messaging.onBackgroundMessage(function (payload) {
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
-
-if (navigator && 'serviceWorker' in navigator) {
+if (typeof navigator !== 'undefined' && navigator && 'serviceWorker' in navigator) {
   navigator.serviceWorker.register('../firebase-messaging-sw.js')
   .then(function(registration) {
     console.log('Registration successful, scope is:', registration.scope);
