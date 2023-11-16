@@ -1,3 +1,7 @@
+
+importScripts("https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/7.9.1/firebase-messaging.js");
+
 function requestPermission() {
     console.log('Requesting permission...');
     Notification.requestPermission().then((permission) => {
@@ -6,10 +10,36 @@ function requestPermission() {
       }
     });
   }
+  import { initializeApp } from "firebase/app";
+  import { getMessaging } from "firebase/messaging/sw";
+  
+  // Initialize the Firebase app in the service worker by passing in
+  // your app's Firebase config object.
+  // https://firebase.google.com/docs/web/setup#config-object
+  // const firebaseApp = initializeApp({
+  //       apiKey: "AIzaSyDPtpEIiYd5a8Og1KaD6wq-OBPhjW04gS8",
+  //       authDomain: "avid-infinity-245609.firebaseapp.com",
+  //       projectId: "avid-infinity-245609",
+  //       storageBucket: "avid-infinity-245609.appspot.com",
+  //       messagingSenderId: "924884594067",
+  //       appId: "G-5VL7P7C8DP",
+  // //   measurementId: 'G-measurement-id',
+  // });
+  
+  
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('../firebase-messaging-sw.js') 
+  .then(function(registration) {
+    console.log('Registration successful, scope is:', registration.scope);
+  }).catch(function(err) {
+    console.log('Service worker registration failed, error:', err);
+  });
+}
+  
+  // Retrieve an instance of Firebase Messaging so that it can handle background
+  // messages.
+  const messaging = getMessaging(firebaseApp);
 
-
-//   importScripts("https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js");
-// importScripts("https://www.gstatic.com/firebasejs/7.9.1/firebase-messaging.js");
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDPtpEIiYd5a8Og1KaD6wq-OBPhjW04gS8",
 //   authDomain: "avid-infinity-245609.firebaseapp.com",
@@ -19,28 +49,19 @@ function requestPermission() {
 //   appId: "G-5VL7P7C8DP",
 // };
  
+ 
 
-// const messaging = firebase.messaging();
+messaging.onBackgroundMessage(function(payload) {
+  console.log("Received background message ", payload);
 
-// messaging.onBackgroundMessage(function(payload) {
-//   console.log("Received background message ", payload);
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+  };
 
-//   const notificationTitle = payload.notification.title;
-//   const notificationOptions = {
-//     body: payload.notification.body,
-//   };
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
 
-//   self.registration.showNotification(notificationTitle, notificationOptions);
-// });
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('../firebase-messaging-sw.js')
-  .then(function(registration) {
-    console.log('Registration successful, scope is:', registration.scope);
-  }).catch(function(err) {
-    console.log('Service worker registration failed, error:', err);
-  });
-}
 
 
 
