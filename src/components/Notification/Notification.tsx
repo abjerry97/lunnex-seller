@@ -90,8 +90,8 @@ function PushNotificationLayout({ children }:any) {
   });
 
   function copiedMessageToast(token: string){
-    if(navigator)
-    navigator?.clipboard.writeText(token);
+    // if(navigator)
+    // navigator?.clipboard.writeText(token);
     toast(
         <div>
           <h5>copied to clipboard!</h5>
