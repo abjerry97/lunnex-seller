@@ -1,14 +1,14 @@
 // importScripts("https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js");
 // importScripts("https://www.gstatic.com/firebasejs/7.9.1/firebase-messaging.js");
 
-// function requestPermission() {
-//     console.log('Requesting permission...');
-//     Notification.requestPermission().then((permission) => {
-//       if (permission === 'granted') {
-//         console.log('Notification permission granted.');
-//       }
-//     });
-//   }
+function requestPermission() {
+    console.log('Requesting permission...');
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
+      }
+    });
+  }
 //   import { initializeApp } from "firebase/app";
 //   import { getMessaging } from "firebase/messaging/sw";
 
@@ -24,15 +24,6 @@
 //   //       appId: "G-5VL7P7C8DP",
 //   // //   measurementId: 'G-measurement-id',
 //   // });
-
-// if ('serviceWorker' in navigator) {
-//   navigator.serviceWorker.register('../firebase-messaging-sw.js')
-//   .then(function(registration) {
-//     console.log('Registration successful, scope is:', registration.scope);
-//   }).catch(function(err) {
-//     console.log('Service worker registration failed, error:', err);
-//   });
-// }
 
 //   // Retrieve an instance of Firebase Messaging so that it can handle background
 //   // messages.
@@ -172,3 +163,12 @@ messaging.onBackgroundMessage(function (payload) {
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
+
+if (navigator && 'serviceWorker' in navigator) {
+  navigator.serviceWorker.register('../firebase-messaging-sw.js')
+  .then(function(registration) {
+    console.log('Registration successful, scope is:', registration.scope);
+  }).catch(function(err) {
+    console.log('Service worker registration failed, error:', err);
+  });
+}
