@@ -87,7 +87,7 @@ function PushNotificationLayout({ children }:any) {
         console.log(error);
       }
     }
-  });
+  },[]);
 
   function copiedMessageToast(token: string){
     navigator.clipboard.writeText(token);
