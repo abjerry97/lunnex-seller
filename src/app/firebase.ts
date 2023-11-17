@@ -102,7 +102,7 @@ const firebaseCloudMessaging = {
         if (status && status === "granted") {
           // Get new token from Firebase
           const fcm_token = await getToken(messaging,{
-            vapidKey: "BPOVlX8egoygc6-h6sBwyzSyZ3B13sz7zmGEsa7V2vGRWs6_cyTdPM-WwhkSz3H3VzBHY7EOqOOkcB3A_caaLUU",
+            vapidKey: "BGiZoPUtHr2Y0wo4u9A916ET4qYFuQjDfGAVYiyG77b6U-FDnEWCtjnsKlYUIgMiik2OHJcfJCvekddPpx1zoMs",
           });
 
           // Set token in our local storage
