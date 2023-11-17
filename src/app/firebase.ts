@@ -13,13 +13,13 @@ import { getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDPtpEIiYd5a8Og1KaD6wq-OBPhjW04gS8",
-  authDomain: "avid-infinity-245609.firebaseapp.com",
-  projectId: "avid-infinity-245609",
-  storageBucket: "avid-infinity-245609.appspot.com",
-  messagingSenderId: "924884594067",
-  appId: "1:924884594067:web:fbc2b6ef3300fa87b94c66",
-  measurementId: "G-5VL7P7C8DP"
+  apiKey: "AIzaSyColv5SSp-F8cSwRhgQo-ikSwSxTVGaFAw",
+  authDomain: "jerry-test-bb8a4.firebaseapp.com",
+  projectId: "jerry-test-bb8a4",
+  storageBucket: "jerry-test-bb8a4.appspot.com",
+  messagingSenderId: "656180440380",
+  appId: "1:656180440380:web:d154bfc87871f5a6d08239",
+  measurementId: "G-4V9E35714K",
 };
 // // Initialize Firebase
 const app = initializeApp(firebaseConfig);
