@@ -36,7 +36,7 @@ import "firebase/messaging";
 // import { firebaseCloudMessaging } from "../utils/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { firebaseCloudMessaging } from "@/app/firebase";
+import { firebaseCloudMessaging ,} from "@/app/firebase";
 import { Url } from "next/dist/shared/lib/router/router";
 import { getMessaging, onMessage } from "firebase/messaging";
 
