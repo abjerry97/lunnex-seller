@@ -11,6 +11,67 @@ import { Url } from "next/dist/shared/lib/router/router";
 import { getMessaging, onMessage } from "firebase/messaging";
 
 function PushNotificationLayout({ children }:any) {
+  async function setToken() {
+    try {
+      const token = await firebaseCloudMessaging.init();
+      if (token) {
+        console.log("token", token);
+
+        getMessage();
+
+        toast(
+            <div onClick={() => {
+              copiedMessageToast(token as string)}} style={{cursor: 'pointer'}}>
+              <h5>Token</h5>
+              <h6>{token as string}</h6>
+            </div>,
+            {
+              closeOnClick: false,
+            }
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  function copiedMessageToast(token: string){
+    navigator.clipboard.writeText(token);
+    toast(
+        <div>
+          <h5>copied to clipboard!</h5>
+        </div>,
+        {
+          closeOnClick: false,
+        }
+    );
+  }
+
+  // Handles the click function on the toast showing push notification
+  const handleClickPushNotification = (url: any) => {
+    router.push(url);
+  };
+
+ 
+
+
+  function getMessage() {
+    const messaging = getMessaging();
+     onMessage(messaging,(message:any) => {
+      console.log({message});
+      toast(
+        <div onClick={() => handleClickPushNotification(message?.data?.url)}>
+          <h5>{message?.notification?.title}</h5>
+          <h6>{message?.notification?.body}</h6>
+        </div>,
+        {
+          closeOnClick: false,
+        }
+      );
+    });
+  }
+
   const router = useRouter();
   useEffect(() => {
     setToken();
@@ -34,67 +95,7 @@ function PushNotificationLayout({ children }:any) {
     }
 
     // Calls the getMessage() function if the token is there
-    async function setToken() {
-      try {
-        const token = await firebaseCloudMessaging.init();
-        if (token) {
-          console.log("token", token);
-
-          getMessage();
-
-          toast(
-              <div onClick={() => {
-                copiedMessageToast(token as string)}} style={{cursor: 'pointer'}}>
-                <h5>Token</h5>
-                <h6>{token as string}</h6>
-              </div>,
-              {
-                closeOnClick: false,
-              }
-          );
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-
-    function copiedMessageToast(token: string){
-      navigator.clipboard.writeText(token);
-      toast(
-          <div>
-            <h5>copied to clipboard!</h5>
-          </div>,
-          {
-            closeOnClick: false,
-          }
-      );
-    }
   
-    // Handles the click function on the toast showing push notification
-    const handleClickPushNotification = (url: any) => {
-      router.push(url);
-    };
-  
-   
-  
-  
-    function getMessage() {
-      const messaging = getMessaging();
-       onMessage(messaging,(message:any) => {
-        console.log({message});
-        toast(
-          <div onClick={() => handleClickPushNotification(message?.data?.url)}>
-            <h5>{message?.notification?.title}</h5>
-            <h6>{message?.notification?.body}</h6>
-          </div>,
-          {
-            closeOnClick: false,
-          }
-        );
-      });
-    }
-
   },[]);
 
 

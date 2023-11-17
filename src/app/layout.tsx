@@ -5,6 +5,7 @@ import { UserAuthContextProvider } from "../context/UserAuthContext";
 import { Providers } from "@/providers/Providers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Notification from "@/components/Notification/Notification";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +36,9 @@ export default function RootLayout({
             theme="colored"
           />
           {children}
+
+          
+          <Notification/>
         </Providers>
       </body>
     </html>

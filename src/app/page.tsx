@@ -15,8 +15,7 @@ import {Cloudinary} from "@cloudinary/url-gen";
 import {fill} from "@cloudinary/url-gen/actions/resize";
 import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 
-import { useState } from "react";
-import Notification from "@/components/Notification/Notification";
+import { useEffect, useState } from "react"; 
 
 
 export default function Home() {
@@ -64,7 +63,7 @@ export default function Home() {
     // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
     // theme: "purple", //change to a purple theme
   });
-
+ 
   const cld = new Cloudinary({cloud: {cloudName: 'abj'}});
   const myImage = cld.image(publicId);
   myImage.resize(fill().width(20).height(20));
@@ -76,7 +75,7 @@ export default function Home() {
           <h1 className={`mb-3 text-4xl font-bold text-black mt-10 lg:mt-5`}>
             Supercharge your sales with a simple website.
           </h1>
-          <Notification/>
+         
           <p className="mb-5 text-black">
             Our multivendor platform can help. With a range of tools and
             features, you can take your business to new heights.
