@@ -70,7 +70,7 @@ function PushNotificationLayout({ children }:any) {
         if (token) {
           console.log("token", token);
 
-          getMessage();
+          // getMessage();
 
           toast(
               <div onClick={() => {
