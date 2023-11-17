@@ -11,7 +11,6 @@ import { getAuth } from "firebase/auth";
 //   appId: "G-5VL7P7C8DP",
 // };
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyColv5SSp-F8cSwRhgQo-ikSwSxTVGaFAw",
   authDomain: "jerry-test-bb8a4.firebaseapp.com",
@@ -65,15 +64,13 @@ export default app;
 //   });
 // };
 
-
-
-
 import "firebase/messaging";
 import firebase from "firebase/app";
 import localforage from "localforage";
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { getAnalytics } from "firebase/analytics";
 
+const messaging = getMessaging(app);
 const firebaseCloudMessaging = {
   init: async () => {
     if (true) {
@@ -101,8 +98,9 @@ const firebaseCloudMessaging = {
         const status = await Notification.requestPermission();
         if (status && status === "granted") {
           // Get new token from Firebase
-          const fcm_token = await getToken(messaging,{
-            vapidKey: "BGiZoPUtHr2Y0wo4u9A916ET4qYFuQjDfGAVYiyG77b6U-FDnEWCtjnsKlYUIgMiik2OHJcfJCvekddPpx1zoMs",
+          const fcm_token = await getToken(messaging, {
+            vapidKey:
+              "BGiZoPUtHr2Y0wo4u9A916ET4qYFuQjDfGAVYiyG77b6U-FDnEWCtjnsKlYUIgMiik2OHJcfJCvekddPpx1zoMs",
           });
 
           // Set token in our local storage
@@ -118,7 +116,11 @@ const firebaseCloudMessaging = {
     }
   },
 };
+
+export const onMessageListener = () =>
+  new Promise((resolve) => {
+    onMessage(messaging, (payload) => {
+      resolve(payload);
+    });
+  });
 export { firebaseCloudMessaging };
-
-
-  
