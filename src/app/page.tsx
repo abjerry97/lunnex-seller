@@ -16,7 +16,7 @@ import {fill} from "@cloudinary/url-gen/actions/resize";
 import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 
 import { useState } from "react";
-import Notification from "@/components/Notification/Notification";
+// import Notification from "@/components/Notification/Notification";
 
 
 export default function Home() {
