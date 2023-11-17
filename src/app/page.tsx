@@ -76,7 +76,7 @@ export default function Home() {
           <h1 className={`mb-3 text-4xl font-bold text-black mt-10 lg:mt-5`}>
             Supercharge your sales with a simple website.
           </h1>
-          <Notification/>
+          {/* <Notification/> */}
           <p className="mb-5 text-black">
             Our multivendor platform can help. With a range of tools and
             features, you can take your business to new heights.
