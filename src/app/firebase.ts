@@ -72,6 +72,7 @@ import "firebase/messaging";
 import firebase from "firebase/app";
 import localforage from "localforage";
 import { getMessaging, getToken } from "firebase/messaging";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseCloudMessaging = {
   init: async () => {
@@ -118,3 +119,6 @@ const firebaseCloudMessaging = {
   },
 };
 export { firebaseCloudMessaging };
+
+
+  
