@@ -1,34 +1,4 @@
-"use client"
-// import { onMessageListener, requestPermission } from '@/app/firebase'
-// import React, { useEffect, useState } from 'react'
-// import { toast } from 'react-toastify'
-
-// export default function Notification() {
-//     const [notification, setnotification] = useState({title:"",body:""})
-
-//     useEffect(() => {
-//       requestPermission()
-
-//       const unsubscribe= onMessageListener().then((payload:any) =>{
-//         setnotification({
-//             title:payload?.notification?.title,
-//             body:payload?.notification?.body
-//         })
-//       })
-    
-//      toast(JSON.stringify(notification))
-
-//       return () => {
-//         unsubscribe.catch((err: any) => console.log("failed: ",err))
-//      }
-//     }, [notification])
-    
-//   return (
-//     <div>Notification</div>
-//   )
-// }
-
-
+"use client" 
 
 import React, { useEffect } from "react";
 import * as firebase from "firebase/app";
@@ -87,43 +57,46 @@ function PushNotificationLayout({ children }:any) {
         console.log(error);
       }
     }
+
+
+    function copiedMessageToast(token: string){
+      navigator.clipboard.writeText(token);
+      toast(
+          <div>
+            <h5>copied to clipboard!</h5>
+          </div>,
+          {
+            closeOnClick: false,
+          }
+      );
+    }
+  
+    // Handles the click function on the toast showing push notification
+    const handleClickPushNotification = (url: any) => {
+      router.push(url);
+    };
+  
+   
+  
+  
+    function getMessage() {
+      const messaging = getMessaging();
+       onMessage(messaging,(message:any) => {
+        console.log({message});
+        toast(
+          <div onClick={() => handleClickPushNotification(message?.data?.url)}>
+            <h5>{message?.notification?.title}</h5>
+            <h6>{message?.notification?.body}</h6>
+          </div>,
+          {
+            closeOnClick: false,
+          }
+        );
+      });
+    }
+
   },[]);
 
-  function copiedMessageToast(token: string){
-    navigator.clipboard.writeText(token);
-    toast(
-        <div>
-          <h5>copied to clipboard!</h5>
-        </div>,
-        {
-          closeOnClick: false,
-        }
-    );
-  }
-
-  // Handles the click function on the toast showing push notification
-  const handleClickPushNotification = (url: any) => {
-    router.push(url);
-  };
-
- 
-
-
-  function getMessage() {
-    const messaging = getMessaging();
-     onMessage(messaging,(message:any) => {
-      console.log({message});
-      toast(
-        <div onClick={() => handleClickPushNotification(message?.data?.url)}>
-          <h5>{message?.notification?.title}</h5>
-          <h6>{message?.notification?.body}</h6>
-        </div>,
-        {
-          closeOnClick: false,
-        }
-      );
-    });
-  }
 
 
   // export const onMessageListener = () => {
