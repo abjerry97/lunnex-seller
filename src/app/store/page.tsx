@@ -24,7 +24,7 @@ export default function Store() {
       {error ? <Error error={error}/> : // "Something Went Wrong"
       isLoading ? (
         <Loading />
-      ) : data.length < 1 ? (
+      ) : data?.length < 1 ? (
         <div className="flex  justify-center h-full w-full">
           <div className="h-32 shadow text-sm p-4 px-10 bg-[#FF3365] rounded-xl flex flex-col items-center justify-center mt-40">
             <p className="text-white mb-3"> You don’t have a Store yet</p>

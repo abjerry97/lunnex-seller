@@ -6,7 +6,7 @@ import { Providers } from "@/providers/Providers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Notification from "@/components/Notification/Notification";
-
+import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,6 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {" "}
+      {/* <Script
+        strategy="lazyOnload"
+        src="https://embed.tawk.to/655c8b38d600b968d3156e61/1hfonvl7i"
+      /> */}
       <body className={inter.className}>
         <Providers>
           <ToastContainer
@@ -37,8 +42,7 @@ export default function RootLayout({
           />
           {children}
 
-          
-          <Notification/>
+          <Notification />
         </Providers>
       </body>
     </html>
