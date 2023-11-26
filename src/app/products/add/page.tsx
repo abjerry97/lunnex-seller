@@ -3,16 +3,14 @@ import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import FormInput from "@/components/FormInput/FormInput";
 import FormTextArea from "@/components/FormTextArea/FormTextArea";
-import FormBtn from "@/components/FormBtn/FormBtn";
-import { useRouter } from "next/navigation";
+import FormBtn from "@/components/FormBtn/FormBtn"; 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useProductsStore } from "@/context/ProductsContext";
 import Error from "@/app/error";
 import Loading from "@/app/signup/loading";
 
-export default function page() {
-  const router = useRouter();
+export default function page() { 
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productDescription, setProductDescription] = useState("");
