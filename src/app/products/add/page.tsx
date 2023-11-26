@@ -10,7 +10,7 @@ import { useProductsStore } from "@/context/ProductsContext";
 import Error from "@/app/error";
 import Loading from "@/app/signup/loading";
 
-export default function page() { 
+export default function Page() { 
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productDescription, setProductDescription] = useState("");
