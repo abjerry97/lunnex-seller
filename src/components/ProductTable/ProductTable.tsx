@@ -1,9 +1,10 @@
 import RatingIcon from "@/assets/icons/RatingIcon";
 import React from "react";
-import ProductTableItem from "../ProductTableItem/ProductTableItem"; 
+import ProductTableItem from "../ProductTableItem/ProductTableItem";
 import { products } from "@/assets/icons/data/Products";
 
-export default function ProductTable() {
+export default function ProductTable(props: any) {
+  const { products = [] } = props;
   return (
     <div className="">
       <div className=" text-black bg-[#D0D0FB] rounded py-4 px-8 mb-4 text-xs font-semibold text-center hidden lg:flex">
@@ -22,10 +23,9 @@ export default function ProductTable() {
         Product
       </div>
       <div className="m-0 lg:m-4  text-black">
-        {products.map((data, index)=>{
-          return (
-            <ProductTableItem index={index} {...data} key={index}/>)
-        })} 
+        {products?.map((data: any, index: any) => {
+          return <ProductTableItem index={index} {...data} key={index} />;
+        })}
       </div>
     </div>
   );

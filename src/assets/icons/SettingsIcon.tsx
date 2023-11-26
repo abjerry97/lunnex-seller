@@ -4,8 +4,8 @@ export default function SettingsIcon(props: any) {
   const { active, mobile } = props;
   return (
     <svg
-      width="25"
-      height="25"
+      width="20"
+      height="20"
       viewBox="0 0 25 25"
       fill={active && mobile ? "#FF3365" : active ? "#FF3365" : "black"}
       xmlns="http://www.w3.org/2000/svg"

@@ -19,16 +19,16 @@ function PushNotificationLayout({ children }:any) {
 
         getMessage();
 
-        toast(
-            <div onClick={() => {
-              copiedMessageToast(token as string)}} style={{cursor: 'pointer'}}>
-              <h5>Token</h5>
-              <h6>{token as string}</h6>
-            </div>,
-            {
-              closeOnClick: false,
-            }
-        );
+        // toast(
+        //     <div onClick={() => {
+        //       copiedMessageToast(token as string)}} style={{cursor: 'pointer'}}>
+        //       <h5>Token</h5>
+        //       <h6>{token as string}</h6>
+        //     </div>,
+        //     {
+        //       closeOnClick: false,
+        //     }
+        // );
       }
     } catch (error) {
       console.log(error);
@@ -60,15 +60,15 @@ function PushNotificationLayout({ children }:any) {
     const messaging = getMessaging();
      onMessage(messaging,(message:any) => {
       console.log({message});
-      toast(
-        <div onClick={() => handleClickPushNotification(message?.data?.url)}>
-          <h5>{message?.notification?.title}</h5>
-          <h6>{message?.notification?.body}</h6>
-        </div>,
-        {
-          closeOnClick: false,
-        }
-      );
+      // toast(
+      //   <div onClick={() => handleClickPushNotification(message?.data?.url)}>
+      //     <h5>{message?.notification?.title}</h5>
+      //     <h6>{message?.notification?.body}</h6>
+      //   </div>,
+      //   {
+      //     closeOnClick: false,
+      //   }
+      // );
     });
   }
 

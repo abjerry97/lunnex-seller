@@ -22,7 +22,7 @@ export default function MobileBottomNav() {
           active && "text-[#FF3365]"
         }`}>
           {icon({ active: isHovered || active, mobile: true })}{" "}
-          <div>{name}</div>
+          <div className="text-xs">{name}</div>
         </div>
       </li>
     );

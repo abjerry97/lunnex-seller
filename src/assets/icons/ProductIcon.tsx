@@ -4,8 +4,8 @@ function ProductIcon(props:any) {
   const { active, mobile } = props; 
   return (
     <svg
-      width="25"
-      height="25"
+      width="18"
+      height="18"
       viewBox="0 0 18 18"
       fill={active & mobile ? "#FF3365" : active ? "none" : "black"}
       xmlns="http://www.w3.org/2000/svg"

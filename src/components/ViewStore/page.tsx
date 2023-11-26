@@ -35,18 +35,14 @@ export default function ViewStore() {
   const queryClient = useQueryClient();
 
   const { isSuccess, isPending, status, error, mutate } = useMutation({
-    mutationFn: async (user: any) => {
-      return await createStore({
-        name: storeName,
-        link: storeLink,
-        welcomeText:welcomeText,
-        email:email,
-      });
+    mutationFn: async (data:any) => {
+      return await createStore(data);
     },
 
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["store"] });
+       
       toast.success(JSON.stringify("Success"), {
         pauseOnHover: true,
         position: "top-right",

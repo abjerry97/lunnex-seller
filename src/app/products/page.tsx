@@ -1,17 +1,31 @@
+"use client";
 import React from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ProductTable from "@/components/ProductTable/ProductTable";
 import HomeChart from "@/components/charts/HomeChart";
 import SelectBox from "@/components/SelectBox/SelectBox";
+import { useProductsStore } from "@/context/ProductsContext";
+import { useQuery } from "@tanstack/react-query";
+import Error from "../error";
+import Loading from "../store/Loading";
 
 export default function Products() {
+  const { getProducts } = useProductsStore();
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["products"],
+    queryFn: () =>
+      getProducts().then((res: any) => {
+        return res;
+      }),
+  });
   return (
     <DashboardLayout>
       <div className="flex gap-4 items-stretch mb-4">
         <div className="bg-[#FCFCFC] rounded-xl p-4 w-full lg:w-6/12 shadow flex flex-col justify-between ">
           <div className="flex justify-between mb-16 items-center">
             <h4 className="font-semibold text-sm  text-black">Total Sales</h4>
-            <SelectBox/>
+            <SelectBox />
           </div>
 
           <div className="flex items-center gap-1 ">
@@ -22,14 +36,19 @@ export default function Products() {
         <div className="bg-[#FCFCFC] rounded-xl p-4  w-full lg:w-6/12 shadow hidden lg:block">
           <div className="flex justify-between items-center mb-2">
             <h4 className="font-semibold text-sm  text-black">Total Sales</h4>
-            <SelectBox/>
+            <SelectBox />
           </div>
 
           <HomeChart />
         </div>
       </div>
-
-      <ProductTable />
+      {error ? (
+        <Error error={error} /> // "Something Went Wrong"
+      ) : isLoading ? (
+        <Loading />
+      ) : Array.isArray(data)? (
+        <ProductTable products={data} />
+      ): <>Product Empty</>}
       {/* #FCFCFC */}
     </DashboardLayout>
   );

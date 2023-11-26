@@ -23,6 +23,7 @@ export default function Home() {
   // Replace with your own cloud  
   const [cloudName] = useState("abj");
   // Replace with your own upload preset
+  
   const [uploadPreset] = useState("fzevswcc");
 
   const router = useRouter();
@@ -95,6 +96,7 @@ export default function Home() {
           alt=""
           width={1000}
           height={500}
+          priority={true}
         />
         <div className="mt-14 w-full md:w-6/12 lg:w-4/12">
           <h1 className=" text-2xl font-bold">

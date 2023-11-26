@@ -1,12 +1,14 @@
 import MoreVertIcon from "@/assets/icons/MoreVert";
 import RatingIcon from "@/assets/icons/RatingIcon";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function ProductTableItem(props:any) {
-  const {index,image, name, id, price, qty, sold}= props
+  const router = useRouter();
+  const {index,image = "/", name, sku:id, price, qty, sold}= props
   return (
-    <div className="m-0 lg:m-4 mb-4">
+    <div className="m-0 lg:m-4 mb-4" onClick={()=>{router.push(`products/${id}`)}}>
       <div className="rounded flex  py-2 border border-[#D2D2D2] text-xs text-center items-center shadow w-full px-2 lg:px-0">
         <div className="w-1/12 px-2 hidden lg:flex justify-center text-center ">{index}</div>
         <div className="w-2/12 flex items-center justify-center">

@@ -10,12 +10,13 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import app, { auth } from "../app/firebase";
 import { UserDataInterface } from "@/interfaces/user";
 import { UserData, privateUserData, publicUserData } from "./extractUserData";
+import { get } from "https";
 const db = getFirestore(app);
 
 export const userAuthContext = createContext<any | null>(null);
 
 export const UserAuthContextProvider = ({ children }: any) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [userState, setUserState] = useState({});
   function logIn(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -55,15 +56,30 @@ export const UserAuthContextProvider = ({ children }: any) => {
     return signOut(auth);
   }
 
+
+
+  function getIdToken(){
+    auth?.currentUser?.getIdToken(true).then(function(idToken) {
+    console.log("idToken",idToken)
+
+    localStorage.setItem("idToken",idToken)
+    }).catch(function(error) {
+    console.log(error)
+    });
+  }
+
+ 
   useEffect(() => {
+    getIdToken()
     const unsubscribe = onAuthStateChanged(auth, (currentuser: any) => {
       setUser(currentuser);
+      getIdToken()
     });
     return () => {
       unsubscribe();
     };
   }, []);
-
+ 
   return (
     <userAuthContext.Provider
       value={{ user, logIn, signUp, logOut, addUserToFirestore }}
