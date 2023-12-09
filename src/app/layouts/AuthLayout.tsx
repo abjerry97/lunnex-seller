@@ -7,7 +7,7 @@ function AuthLayout(props: any) {
   const router = useRouter();
   const { user } = useUserAuth();
   const authenticated = !!user && !!user.uid;
-  if (authenticated)  router.push("/home");
+  if (authenticated)  router.push("/home"); 
   return (
     
     <div className=" ">
