@@ -60,8 +60,8 @@ export const UserAuthContextProvider = ({ children }: any) => {
 
 
 
-  function getIdToken(){
-    auth?.currentUser?.getIdToken(true).then(function(idToken) {
+  async function getIdToken(){
+  await  auth?.currentUser?.getIdToken(true).then(function(idToken) {
     console.log("idToken",idToken)
 
     localStorage.setItem("idToken",idToken)
@@ -72,10 +72,10 @@ export const UserAuthContextProvider = ({ children }: any) => {
 
  
   useEffect(() => {
-    getIdToken()
+    // getIdToken()
     const unsubscribe = onAuthStateChanged(auth, (currentuser: any) => {
       setUser(currentuser);
-      getIdToken()
+       getIdToken()
     });
     return () => {
       unsubscribe();

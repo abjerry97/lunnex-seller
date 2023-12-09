@@ -8,8 +8,7 @@ import SearchIcon from "@/assets/icons/SearchIcon";
 import Image from "next/image";
 import RatingIcon from "@/assets/icons/RatingIcon";
 import PlayIcon from "@/assets/icons/PlayIcon";
-import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import { makeRequest } from "../../app/axios";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query"; 
 import { useUserStore } from "@/context/UserStoreContext";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -70,7 +69,7 @@ export default function ViewStore() {
     }
   }; 
   return (
-    <> 
+    <>  
       {status == "error" || error ? (
         <ErrorPage error={error} />
       ) : isPending ? (

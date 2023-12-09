@@ -46,7 +46,7 @@ export default function ProductTable() {
             })}
           </>
         ) : (
-          <>Product Empty, Proceed to create product <Link className=" underline cursor-pointer" href="products/add">here</Link></>
+          <>{JSON.stringify(error)} Product Empty, Proceed to create product <Link className=" underline cursor-pointer" href="products/add">here</Link></>
         )}
       </div>
     </div>

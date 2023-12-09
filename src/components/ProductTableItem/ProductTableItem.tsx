@@ -53,8 +53,8 @@ export default function ProductTableItem(props: any) {
             <div className="absolute w-32 top-0 bottom-0">
               <ul className=" bg-white shadow rounded ">
                 <li className=" border-b-2 p-2 cursor-pointer">View Product</li>
-                <li className=" border-b-2 p-2 cursor-pointer">View Product</li>
-                <li className=" border-b-2 p-2 cursor-pointer">View Product</li>
+                <li className=" border-b-2 p-2 cursor-pointer">Edit Product</li>
+                <li className=" border-b-2 p-2 cursor-pointer">Delete Product</li>
               </ul>
             </div>
           ) : (

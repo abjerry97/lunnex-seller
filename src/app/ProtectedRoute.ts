@@ -12,8 +12,9 @@ const ProtectedRoute = ({ children }: any) => {
   // useLayoutEffect(() => {
 
   // }, [user, router] )
-  if (!user) {
-    // router.push("/login");
+  const authenticated = !!user && !!user.uid;
+  if (!authenticated) {
+    router.push("/login");
   }
   return children;
 };
