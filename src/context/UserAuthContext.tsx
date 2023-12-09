@@ -53,8 +53,9 @@ export const UserAuthContextProvider = ({ children }: any) => {
   }
 
   function logOut() {
-    
-    localStorage.removeItem("idToken")
+    if (typeof window !== "undefined") {
+  if (window.localStorage) {
+    localStorage.removeItem("idToken")}}
     return signOut(auth);
   }
 
@@ -63,8 +64,9 @@ export const UserAuthContextProvider = ({ children }: any) => {
   async function getIdToken(){
   await  auth?.currentUser?.getIdToken(true).then(function(idToken) {
     console.log("idToken",idToken)
-
-    localStorage.setItem("idToken",idToken)
+if (typeof window !== "undefined") {
+  if (window.localStorage) {
+    localStorage.setItem("idToken",idToken)}}
     }).catch(function(error) {
     console.log(error)
     });
