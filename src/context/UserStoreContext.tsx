@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 
 const userStoreContext = createContext<any | null>(null);
 
-export function UserStoreContextProvider({ children }: any) { 
+export function UserStoreContextProvider({ children }: any) {
   const [store, setStore] = useState(null);
   const [storeName, setStoreName] = useState(null);
 
@@ -17,28 +17,48 @@ export function UserStoreContextProvider({ children }: any) {
     if (res.data && res.status < 400) {
       setStore(res.data);
       return res.data;
-    } else throw new Error(res.data?.response?.message);
+    } else return null;
   }
-
   async function getStore() {
-    const res = await makeRequest.get("stores");  
+    const res = await makeRequest.get("stores");
     if (res.data && res.status < 400) {
-      setStore(res.data[res.data.length -1]);
+      setStore(res.data);
       return res.data;
-    }
-    else throw new Error(res.data?.response?.message)
-
+    } else return null;
+  }
+  async function getUserStore() {
+    const res = await makeRequest.get("stores/user");
+    console.log(res);
+    if (res.data && res.status < 400) {
+      setStore(res.data);
+      return res.data;
+    } else return null;
+  }
+  async function checkUserStore() {
+    const res = await makeRequest.get("stores/user/check");
+    console.log(res);
+    if (res.data && res.status < 400) {
+      setStore(res.data);
+      return res.data;
+    } else return null;
   }
 
   return (
     <userStoreContext.Provider
-      value={{ store, createStore, storeName, createStoreName, getStore }}
+      value={{
+        store,
+        createStore,
+        storeName,
+        createStoreName,
+        getStore,
+        getUserStore,
+        checkUserStore
+      }}
     >
       {children}
     </userStoreContext.Provider>
   );
 }
-
 export function useUserStore() {
   return useContext(userStoreContext);
 }

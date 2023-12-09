@@ -1,10 +1,21 @@
 import RatingIcon from "@/assets/icons/RatingIcon";
 import React from "react";
 import ProductTableItem from "../ProductTableItem/ProductTableItem";
-import { products } from "@/assets/icons/data/Products";
+import { useProductsStore } from "@/context/ProductsContext";
+import { useQuery } from "@tanstack/react-query";
+import Error from "@/app/error";
+import Link from "next/link";
 
-export default function ProductTable(props: any) {
-  const { products = [] } = props;
+export default function ProductTable() {
+  const { getUserProducts } = useProductsStore();
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["products"],
+    queryFn: () =>
+      getUserProducts().then((res: any) => {
+        return res;
+      }),
+  });
   return (
     <div className="">
       <div className=" text-black bg-[#D0D0FB] rounded py-4 px-8 mb-4 text-xs font-semibold text-center hidden lg:flex">
@@ -23,9 +34,20 @@ export default function ProductTable(props: any) {
         Product
       </div>
       <div className="m-0 lg:m-4  text-black">
-        {products?.map((data: any, index: any) => {
-          return <ProductTableItem index={index} {...data} key={index} />;
-        })}
+        {isLoading ? (
+          "Loading"
+        ) : error ? (
+          <Error error={error} />
+        ) : !!data && data.length > 0 ? (
+          <>
+            {" "}
+            {data?.map((data: any, index: any) => {
+              return <ProductTableItem index={index} {...data} key={index} />;
+            })}
+          </>
+        ) : (
+          <>Product Empty, Proceed to create product <Link className=" underline cursor-pointer" href="products/add">here</Link></>
+        )}
       </div>
     </div>
   );

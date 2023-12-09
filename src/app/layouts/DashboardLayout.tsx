@@ -19,14 +19,7 @@ import DesktopTopNav from "@/components/DesktopTopNav/DesktopTopNav";
 import { useUserAuth } from "@/context/UserAuthContext";
 import { useRouter } from "next/navigation";
 import ProtectedRoute from "../ProtectedRoute";
-const LogoDiv = () => {
-  return (
-    <>
-      <Logo />
-    </>
-  );
-};
-
+ 
 export default function DashboardLayout(props: any) {
   const router = useRouter();
   const { user } = useUserAuth();

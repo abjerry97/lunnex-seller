@@ -8,8 +8,8 @@ function AuthLayout(props: any) {
   const { user } = useUserAuth();
 
   useEffect(() => {
-    const authenticated = !!user && !!user.uid;
-    if (authenticated) router.push("/home");
+    // const authenticated = !!user && !!user.uid;
+    if (user) router.back( );
   }, [user,router]);
 
   return (

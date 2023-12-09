@@ -9,8 +9,7 @@ export default function Error(props: any) {
     <div className="h-full w-full flex justify-center items-center">
       <div className="fof text-center">
         <h1>Error {error?.response?.status}</h1>
-        <p>{error.message}</p>
-
+        <p>{error?.response?.data?.message || error.message}</p> 
         <p
           className="mt-2 underline cursor-pointer"
           onClick={() => router.back()}

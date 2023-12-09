@@ -10,15 +10,7 @@ import Error from "../error";
 import Loading from "../store/Loading";
 
 export default function Products() {
-  const { getProducts } = useProductsStore();
-
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["products"],
-    queryFn: () =>
-      getProducts().then((res: any) => {
-        return res;
-      }),
-  });
+   
   return (
     <DashboardLayout>
       <div className="flex gap-4 items-stretch mb-4">
@@ -42,13 +34,7 @@ export default function Products() {
           <HomeChart />
         </div>
       </div>
-      {error ? (
-        <Error error={error} /> // "Something Went Wrong"
-      ) : isLoading ? (
-        <Loading />
-      ) : Array.isArray(data)? (
-        <ProductTable products={data} />
-      ): <>Product Empty</>}
+       <ProductTable/>
       {/* #FCFCFC */}
     </DashboardLayout>
   );

@@ -15,7 +15,7 @@ export default function ViewProduct(props: any) {
 
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["product"],
     queryFn: () =>
       getProduct(props?.params?.slug).then((res: any) => {
         return res;

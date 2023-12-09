@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import { useRouter } from "next/navigation";
 import { makeRequest } from "../axios";
@@ -10,19 +10,24 @@ import ViewStore from "@/components/ViewStore/page";
 import Error from "../error";
 
 export default function Store() {
-  const { createStore, store, getStore } = useUserStore();
+  const router = useRouter();
+  const [displayViewStore, setdisplayViewStore] = useState(false);
+  const { createStore, store, checkUserStore } = useUserStore();
   const { isLoading, error, data } = useQuery({
     queryKey: ["store"],
     queryFn: () =>
-      getStore().then((res: any) => {
+    checkUserStore().then((res: any) => {
         return res;
       }),
   });
-  const router = useRouter();
+  console.log(error)
   return (
     <DashboardLayout>
-      {error ? <Error error={error}/> : // "Something Went Wrong"
-      isLoading ? (
+      {displayViewStore ? (
+        <ViewStore />
+      ): error ? (
+        <Error error={error} /> // "Something Went Wrong"
+      ) : isLoading ? (
         <Loading />
       ) : data?.length < 1 ? (
         <div className="flex  justify-center h-full w-full">
@@ -30,14 +35,14 @@ export default function Store() {
             <p className="text-white mb-3"> You don’t have a Store yet</p>
             <button
               className="bg-white rounded shadow px-4 py-2"
-              onClick={() => router.push("store/view")}
+              onClick={() => setdisplayViewStore(true)}
             >
               Create Store
             </button>
           </div>
         </div>
       ) : (
-       <ViewStore/>
+        <ViewStore />
       )}
     </DashboardLayout>
   );

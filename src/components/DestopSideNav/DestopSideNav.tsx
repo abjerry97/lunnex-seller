@@ -14,22 +14,28 @@ export default function DestopSideNav() {
 
     const [isHovered, setisHovered] = useState(false);
     return (
-      <li
-        className={` cursor-pointer hover:text-[#FF3365] ${
-          active && "text-[#FF3365]"
-        }`}
-        onClick={() => router.push(to)}
-      >
+      <li className={` cursor-pointer `} onClick={() => router.push(to)}>
         {" "}
-        <div className="p-2 flex gap-2 items-center">
+        <div
+          className={`p-2 flex gap-2 items-center hover:text-[#FF3365] ${
+            active && "text-[#FF3365]"
+          } `}
+        >
           {icon({ active: isHovered || active })} <div>{name}</div>
         </div>
-
-        {active && children &&
+        {active &&
+          children &&
           children.map((data: any, index: any) => {
             return (
-              <div className=" ms-4 p-2 flex gap-2 items-center text-xs" key={index}>
-                {data.icon({ active: isHovered || active })} <div>{data.name}</div>
+              <div
+                className={`ms-4 p-2 flex gap-2 items-center text-xs hover:text-[#FF3365] ${
+                  data.to == pathname && "text-[#FF3365]"
+                }`}
+                key={index}
+                onClick={(e) => {e.stopPropagation(); router.push(data.to)}}
+              >
+                {data.icon({ active: isHovered || (data.to == pathname) })}{" "}
+                <div>{data.name}  </div>
               </div>
             );
           })}
@@ -45,9 +51,9 @@ export default function DestopSideNav() {
       <div className=" flex flex-col justify-between h-5/6">
         <ul className="text-sm font-semibold  text-black">
           {navLinks?.map((data: any, index) => {
-            if (data.to.includes(pathname)) data = { ...data, active: true };
+            if (data.to.split("/").includes(pathname.split("/")[1] || "")) data = { ...data, active: true };
 
-            return <SideNavLink key={index} {...data} />;
+            return <SideNavLink key={index} {...data} pathname={pathname} />;
           })}
         </ul>
 

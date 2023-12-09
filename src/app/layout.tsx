@@ -22,14 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       {" "}
-      <Script
+      {/* <Script
         type="text/javascript"
         id="hs-script-loader"
         async
         defer
         src="//js-eu1.hs-scripts.com/143681468.js"
         strategy="lazyOnload"
-      />
+      /> */}
       <body className={inter.className}>
         <Providers>
           <ToastContainer

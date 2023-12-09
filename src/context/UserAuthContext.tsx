@@ -53,6 +53,8 @@ export const UserAuthContextProvider = ({ children }: any) => {
   }
 
   function logOut() {
+    
+    localStorage.removeItem("idToken")
     return signOut(auth);
   }
 

@@ -9,12 +9,16 @@ export function ProductsContextProvider({ children }: any) {
   const [product, setProduct] = useState(null);
 
   async function createProduct(data: any) {
-    const res = await makeRequest.post("products", data);
+    try {
+      const res = await makeRequest.post("products", data);
 
-    if (res.data && res.status < 400) {
-      setProducts(res.data);
-      return res.data;
-    } else throw new Error(res.data?.response?.message);
+      if (res.data && res.status < 400) {
+        setProducts(res.data);
+        return res.data;
+      } else return null;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
   }
 
   async function getProducts() {
@@ -22,19 +26,33 @@ export function ProductsContextProvider({ children }: any) {
     if (res.data && res.status < 400) {
       setProducts(res.data);
       return res.data;
-    } else throw new Error(res.data?.response?.message);
+    } else return null;
+  }
+  async function getUserProducts() {
+    const res = await makeRequest.get("products/user");
+    if (res.data && res.status < 400) {
+      setProducts(res.data);
+      return res.data;
+    } else return null;
   }
   async function getProduct(id: string) {
     const res = await makeRequest.get(`products/${id}`);
     if (res.data && res.status < 400) {
       setProduct(res.data);
       return res.data;
-    } else throw new Error(res.data?.response?.message);
+    } else return null;
   }
 
   return (
     <productsContext.Provider
-      value={{ product, products, getProducts, createProduct, getProduct }}
+      value={{
+        product,
+        products,
+        getProducts,
+        createProduct,
+        getProduct,
+        getUserProducts,
+      }}
     >
       {children}
     </productsContext.Provider>

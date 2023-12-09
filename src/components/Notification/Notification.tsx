@@ -14,7 +14,7 @@ function PushNotificationLayout({ children }: any) {
     (url: any) => {
       router.push(url);
     },
-    [router] // No dependencies needed here
+    [router]  
   );
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function PushNotificationLayout({ children }: any) {
         );
       });
     }
-  }, [handleClickPushNotification]); // No need to include router in the dependencies array
+  }, [handleClickPushNotification]);  
 
   return (
     <>

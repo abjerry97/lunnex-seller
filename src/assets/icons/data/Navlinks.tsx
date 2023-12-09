@@ -28,7 +28,7 @@ export const navLinks = [
       },
       {
         name: "Add a Product",
-        to: "/product/add",
+        to: "/products/add",
         mobile: true,
         icon: (props: any) => <PlusIcon {...props} />,
       },
