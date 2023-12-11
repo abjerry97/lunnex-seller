@@ -23,7 +23,7 @@ const makeRequest = axios.create({
 
 makeRequest.interceptors.response.use(
   (response:any) => { 
-    return response   ;
+    return response;
   },
   (error) => { 
     // if (error) 
