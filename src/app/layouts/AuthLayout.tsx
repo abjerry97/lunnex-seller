@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 function AuthLayout(props: any) {
-  const router = useRouter();
+  // const router = useRouter();
   const { user } = useUserAuth();
   const authenticated = !!user && !!user.uid;
   

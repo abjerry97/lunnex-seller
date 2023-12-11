@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 import ProtectedRoute from "../ProtectedRoute";
  
 export default function DashboardLayout(props: any) {
-  const router = useRouter();
+  // const router = useRouter();
   const { user } = useUserAuth();
 
   return (
