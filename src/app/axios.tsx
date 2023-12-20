@@ -25,10 +25,10 @@ makeRequest.interceptors.response.use(
   (response:any) => { 
     return response;
   },
-  // (error) => { 
-  //   // if (error) 
-  //   throw new Error(error?.response?.data?.message ||error)
-  // }
+  (error: { response: { data: { message: any; }; }; }) => { 
+    // if (error) 
+    throw new Error(error?.response?.data?.message ||error)
+  }
 );
 
 export default makeRequest;
