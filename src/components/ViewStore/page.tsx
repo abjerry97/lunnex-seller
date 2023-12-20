@@ -25,7 +25,7 @@ export default function ViewStore() {
   useEffect(() => {
     if (store) {
       console.log(store);
-      setstoreName(store?.name);
+      setstoreName(store?.name || "");
       setstoreLink(store?.link || "");
       setWelcomeText(store?.welcomeText || "");
       setEmail(store?.email || "");
@@ -72,9 +72,7 @@ export default function ViewStore() {
     <>  
       {status == "error" || error ? (
         <ErrorPage error={error} />
-      ) : isPending ? (
-        "loading"
-      ) : (
+      ) : ( 
         <div className="flex h-full flex-wrap">
           {/* {JSON.stringify(store)} */}
           <div className="w-full lg:w-5/12 h-fit mb-10">
@@ -104,7 +102,7 @@ export default function ViewStore() {
               setValue={setEmail}
             />
             <div className="mt-6">
-              <FormBtn onClick={handleSubmit}>Save Changes</FormBtn>
+              <FormBtn isLoading={isPending} onClick={handleSubmit}>Save Changes</FormBtn>
             </div>
             {/* {JSON.stringify(storeData && storeData[storeData.length - 1])} */}
           </div>

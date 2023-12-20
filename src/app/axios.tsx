@@ -11,7 +11,7 @@ if (typeof window !== "undefined") {
   console.error("This script should be executed in a browser environment.");
 }
 const makeRequest = axios.create({
-  baseURL: "https://lunnex-backend.onrender.com",
+  baseURL: "http://localhost:3000", //https://lunnex-backend.onrender.com
   withCredentials: true,
   headers: {
     "Access-Control-Allow-Origin": "*",
@@ -25,10 +25,10 @@ makeRequest.interceptors.response.use(
   (response:any) => { 
     return response;
   },
-  (error) => { 
-    // if (error) 
-    throw new Error(error?.response?.data?.message ||error)
-  }
+  // (error) => { 
+  //   // if (error) 
+  //   throw new Error(error?.response?.data?.message ||error)
+  // }
 );
 
 export default makeRequest;

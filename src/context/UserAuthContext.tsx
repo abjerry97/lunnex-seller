@@ -1,4 +1,4 @@
-import {  createContext, useContext, useEffect, useState } from "react";
+import {  createContext, useContext, useEffect, useRef, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -15,41 +15,78 @@ const db = getFirestore(app);
 
 export const userAuthContext = createContext<any | null>(null);
 
+
+
 export const UserAuthContextProvider = ({ children }: any) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(auth.currentUser);
+  const isAuthenticated = useRef<any>()
+  isAuthenticated.current = true
+
+  // const isAuthenticated = true
+  // console.log("auth",auth)
+  // = authenticated.current
   const [userState, setUserState] = useState({});
   function logIn(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  function addFirebaseDoc(model: string, data: any) {
-    addDoc(collection(db, model), { ...data });
-  }
-  function addUserToFirestore(email: string, password: string, data: any) {
-    return signUp(email, password, data, (result: any) => {
-      const dataToSend = { ...data, ...result, email };
 
-      addFirebaseDoc("users", { ...UserData({ ...dataToSend }) });
-      addFirebaseDoc("publicUserData", {
-        ...publicUserData({ ...dataToSend }),
-      });
-      addFirebaseDoc("privateUserData", {
-        ...privateUserData({ ...dataToSend }),
-      });
-      return dataToSend
-    });
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // console.log(user)
+  // function addFirebaseDoc(model: string, data: any) {
+  //   addDoc(collection(db, model), { ...data });
+  // }
+  // function addUserToFirestore(email: string, password: string, data: any) {
+  //   return signUp(email, password, data, (result: any) => {
+  //     const dataToSend = { ...data, ...result, email };
+
+  //     // addFirebaseDoc("users", { ...UserData({ ...dataToSend }) });
+  //     // addFirebaseDoc("publicUserData", {
+  //     //   ...publicUserData({ ...dataToSend }),
+  //     // });
+  //     // addFirebaseDoc("privateUserData", {
+  //     //   ...privateUserData({ ...dataToSend }),
+  //     // });
+  //     return dataToSend
+  //   });
+  // }
+  // async function signUp(
+  //   email: string,
+  //   password: string,
+  //   data: any,
+  //   cb: Function
+  // ) {
+  //   console.log(data)
+  //   const newUser = await createUserWithEmailAndPassword(auth, email, password);
+  //   updateProfile(newUser.user, { displayName: data?.fullName });
+  //   const { uid, emailVerified, isAnonymous, photoURL, phoneNumber } =
+  //     newUser?.user;
+  //   return cb({ uid, emailVerified, isAnonymous, photoURL, phoneNumber });
+  // }
+
+
+
   async function signUp(
     email: string,
     password: string,
-    data: any,
-    cb: Function
+    data: any, 
   ) {
     const newUser = await createUserWithEmailAndPassword(auth, email, password);
-    updateProfile(newUser.user, { displayName: data?.fullName });
-    const { uid, emailVerified, isAnonymous, photoURL, phoneNumber } =
-      newUser?.user;
-    return cb({ uid, emailVerified, isAnonymous, photoURL, phoneNumber });
+    updateProfile(newUser.user, { displayName: data?.fullName }); 
+    getIdToken()
+    return newUser;
   }
 
   function logOut() {
@@ -75,10 +112,15 @@ if (typeof window !== "undefined") {
  
   useEffect(() => {
     // getIdToken()
+  
+    isAuthenticated.current =false
     const unsubscribe = onAuthStateChanged(auth, (currentuser: any) => {
       setUser(currentuser);
+ 
+      isAuthenticated.current =true
        getIdToken()
     });
+    
     return () => {
       unsubscribe();
     };
@@ -86,7 +128,7 @@ if (typeof window !== "undefined") {
  
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, addUserToFirestore }}
+      value={{ user, logIn, signUp, logOut ,isAuthenticated}}
     >
       {children}
     </userAuthContext.Provider>

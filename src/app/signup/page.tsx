@@ -11,7 +11,7 @@ import { useUserStore } from "@/context/UserStoreContext";
 export default function Signup() {
   const router = useRouter();
 
-  const { addUserToFirestore } = useUserAuth();
+  const { signUp } = useUserAuth();
   const { storeName, createStore } = useUserStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,11 +22,12 @@ export default function Signup() {
     e.preventDefault();
     try {
       setisLoading(true);
-      const user = await addUserToFirestore(
+      const user = await signUp(
         email,
         password,
-        { fullName: name },
-        storeName
+        { fullName: name }
+        // ,
+        // storeName
       );
       if (user?.uid) await createStore({ name: storeName, userId: user.uid });
       setisLoading(false);

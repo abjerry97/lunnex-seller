@@ -3,18 +3,17 @@ import { useUserAuth } from "../context/UserAuthContext";
 import { useRouter } from "next/navigation";
 
 const ProtectedRoute = ({ children }: any) => {
-  const { user } = useUserAuth();
+  const { isAuthenticated } = useUserAuth();
   const router = useRouter(); 
-  // useEffect(() => {
- 
-  // }, [user, router]);
-
-  useLayoutEffect(() => {
-    const authenticated = !!user && !!user.uid;
-    if (!authenticated) {
+  useEffect(() => {
+    if (!isAuthenticated.current) {
       router.push("/login");
     }
-  }, [user, router] )
+  }, [ router]);
+console.log(isAuthenticated)
+  // useLayoutEffect(() => { 
+ 
+  // }, [ router] )
 
   return children;
 };
