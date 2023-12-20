@@ -16,7 +16,7 @@ export default function Page() {
   const [productPrice, setProductPrice] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productId, setProductId] = useState("");
-  const [qty, setQty] = useState("");
+  const [qty, setQty] = useState(0);
   const router  = useRouter()
   const queryClient = useQueryClient();
 
@@ -50,7 +50,7 @@ export default function Page() {
       mutate({
         name: productName,
         image: "",
-        qty: qty,
+        qty: +qty,
         description: productDescription,
         sku: productId,
         price:productPrice
