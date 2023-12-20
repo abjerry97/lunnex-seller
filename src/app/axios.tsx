@@ -26,8 +26,9 @@ makeRequest.interceptors.response.use(
     return response;
   },
   (error: { response: { data: { message: any; }; }; }) => { 
-    // if (error) 
-    throw new Error(error?.response?.data?.message ||error)
+    const errorMessage = error?.response?.data?.message?.[0] ?? error?.response?.data?.message ?? error;
+
+    throw new Error(errorMessage)
   }
 );
 
